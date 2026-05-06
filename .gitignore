@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Archivos temporales
+*.tmp
+*.temp
+*.log
+
+# Carpetas de sistema
+Thumbs.db
+ehthumbs.db
+
+# VS Code
+.vscode/
+
+# Node (por si se agrega después)
+node_modules/

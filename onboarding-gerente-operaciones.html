@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On-Boarding | Gerente de Operaciones Retail – Dada Group</title>
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --secondary: #16213e;
+    --accent: #e94560;
+    --gold: #f5a623;
+    --light: #f4f6f9;
+    --white: #ffffff;
+    --text: #2d3748;
+    --text-light: #718096;
+    --border: #e2e8f0;
+    --success: #38a169;
+    --lc-color: #c8102e;
+    --ardene-color: #ff6b9d;
+    --cotton-color: #2d6a4f;
+    --lufian-color: #6c63ff;
+    --radius: 12px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #0f3460 60%, #1a1a2e 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(233,69,96,0.15) 0%, transparent 60%);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(233,69,96,0.2);
+    border: 1px solid rgba(233,69,96,0.4);
+    color: #f8a4b0;
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.5px; position: relative; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { font-size: 1.05rem; color: rgba(255,255,255,0.75); margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .hero-brands {
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+    margin-top: 30px; position: relative;
+  }
+  .hero-brand {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: 8px 20px; border-radius: 30px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+  }
+  .hero-brand.lc { border-color: rgba(200,16,46,0.5); color: #ffa0ae; }
+  .hero-brand.ardene { border-color: rgba(255,107,157,0.5); color: #ffb3d1; }
+  .hero-brand.cotton { border-color: rgba(45,106,79,0.5); color: #a8e6c3; }
+  .hero-brand.lufian { border-color: rgba(108,99,255,0.5); color: #c4c0ff; }
+
+  .hero-meta {
+    display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
+    margin-top: 30px; position: relative;
+  }
+  .hero-meta-item { font-size: 13px; color: rgba(255,255,255,0.6); }
+  .hero-meta-item strong { color: white; display: block; font-size: 15px; }
+
+  /* ── NAV ── */
+  .nav-wrapper {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .nav {
+    display: flex; overflow-x: auto; gap: 0;
+    max-width: 1100px; margin: 0 auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    border: none; background: none; cursor: pointer;
+    padding: 16px 22px; font-size: 13px; font-weight: 600;
+    color: var(--text-light); white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s; letter-spacing: 0.3px;
+  }
+  .nav-btn:hover { color: var(--primary); }
+  .nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .nav-btn .nav-icon { margin-right: 6px; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── CARDS ── */
+  .card {
+    background: white; border-radius: var(--radius);
+    padding: 28px 30px; box-shadow: var(--shadow);
+    border: 1px solid var(--border); margin-bottom: 24px;
+  }
+  .card-title {
+    font-size: 1.15rem; font-weight: 700; color: var(--primary);
+    margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
+  }
+  .card-title .icon { font-size: 1.2rem; }
+  .card-subtitle { font-size: 0.875rem; color: var(--text-light); margin-bottom: 18px; }
+
+  /* ── PROGRESS TRACKER ── */
+  .progress-section { margin-bottom: 32px; }
+  .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .progress-header h2 { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
+  .progress-pct { font-size: 2rem; font-weight: 800; color: var(--accent); }
+  .progress-bar { height: 10px; background: var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); border-radius: 10px; transition: width 0.5s ease; }
+  .progress-label { font-size: 12px; color: var(--text-light); }
+
+  /* ── PHASE CARDS ── */
+  .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 32px; }
+  @media(max-width: 768px){ .phases { grid-template-columns: 1fr; } }
+  .phase-card {
+    background: white; border-radius: var(--radius); padding: 24px;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+    border-top: 4px solid;
+    cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .phase-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .phase-card.phase-1 { border-top-color: #4299e1; }
+  .phase-card.phase-2 { border-top-color: var(--gold); }
+  .phase-card.phase-3 { border-top-color: var(--success); }
+  .phase-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .phase-card.phase-1 .phase-label { color: #4299e1; }
+  .phase-card.phase-2 .phase-label { color: var(--gold); }
+  .phase-card.phase-3 .phase-label { color: var(--success); }
+  .phase-title { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+  .phase-days { font-size: 13px; color: var(--text-light); margin-bottom: 12px; }
+  .phase-desc { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .phase-tasks-count { margin-top: 12px; font-size: 12px; color: var(--text-light); }
+  .phase-tasks-count span { font-weight: 700; color: var(--primary); }
+
+  /* ── CHECKLIST ── */
+  .checklist-phase { margin-bottom: 32px; }
+  .checklist-phase-title {
+    font-size: 1rem; font-weight: 800; padding: 10px 16px; border-radius: 8px;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .cp-1 { background: #ebf8ff; color: #2b6cb0; }
+  .cp-2 { background: #fffaf0; color: #c05621; }
+  .cp-3 { background: #f0fff4; color: #276749; }
+  .checklist-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 16px; border-radius: 8px;
+    border: 1px solid var(--border);
+    margin-bottom: 8px; background: white;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .checklist-item:hover { border-color: #a0aec0; background: #fafafa; }
+  .checklist-item.checked { background: #f0fff4; border-color: #9ae6b4; }
+  .checklist-item.checked .ci-text { text-decoration: line-through; color: var(--text-light); }
+  .ci-box {
+    width: 20px; height: 20px; border-radius: 5px;
+    border: 2px solid #cbd5e0; background: white;
+    flex-shrink: 0; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .checklist-item.checked .ci-box { background: var(--success); border-color: var(--success); }
+  .ci-check { color: white; font-size: 12px; display: none; }
+  .checklist-item.checked .ci-check { display: block; }
+  .ci-content { flex: 1; }
+  .ci-text { font-size: 14px; font-weight: 600; color: var(--text); }
+  .ci-detail { font-size: 12px; color: var(--text-light); margin-top: 3px; }
+  .ci-tag {
+    font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+    margin-top: 5px; display: inline-block;
+  }
+
+  /* ── BRAND GRID ── */
+  .brands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media(max-width: 768px){ .brands-grid { grid-template-columns: 1fr; } }
+  .brand-card {
+    background: white; border-radius: var(--radius); padding: 24px;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+    border-left: 5px solid;
+  }
+  .brand-card.lc { border-left-color: var(--lc-color); }
+  .brand-card.ardene { border-left-color: var(--ardene-color); }
+  .brand-card.cotton { border-left-color: var(--cotton-color); }
+  .brand-card.lufian { border-left-color: var(--lufian-color); }
+  .brand-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .brand-logo {
+    width: 48px; height: 48px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 900; color: white; letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+  .brand-card.lc .brand-logo { background: var(--lc-color); }
+  .brand-card.ardene .brand-logo { background: var(--ardene-color); }
+  .brand-card.cotton .brand-logo { background: var(--cotton-color); }
+  .brand-card.lufian .brand-logo { background: var(--lufian-color); }
+  .brand-name { font-size: 1.05rem; font-weight: 800; color: var(--primary); }
+  .brand-type { font-size: 12px; color: var(--text-light); }
+  .brand-info { font-size: 13px; color: var(--text); line-height: 1.6; }
+  .brand-kpis { margin-top: 14px; }
+  .kpi-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .kpi-row:last-child { border-bottom: none; }
+  .kpi-label { font-size: 12px; color: var(--text-light); }
+  .kpi-value { font-size: 13px; font-weight: 700; color: var(--primary); }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 24px; }
+  @media(max-width: 900px){ .info-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 600px){ .info-grid { grid-template-columns: 1fr; } }
+  .info-card {
+    background: white; border-radius: var(--radius); padding: 20px;
+    box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center;
+  }
+  .info-icon { font-size: 2rem; margin-bottom: 10px; }
+  .info-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 4px; }
+  .info-value { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
+
+  /* ── VALUES ── */
+  .values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media(max-width: 600px){ .values-grid { grid-template-columns: 1fr; } }
+  .value-card {
+    background: linear-gradient(135deg, var(--primary), #0f3460);
+    color: white; border-radius: var(--radius); padding: 22px;
+    box-shadow: var(--shadow);
+  }
+  .value-icon { font-size: 1.8rem; margin-bottom: 10px; }
+  .value-title { font-size: 15px; font-weight: 800; margin-bottom: 6px; }
+  .value-desc { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.5; }
+
+  /* ── ORG CHART ── */
+  .org-wrapper { overflow-x: auto; padding-bottom: 8px; }
+  .org { display: flex; flex-direction: column; align-items: center; gap: 0; min-width: 500px; }
+  .org-level { display: flex; justify-content: center; gap: 16px; margin-bottom: 0; position: relative; }
+  .org-node {
+    background: white; border-radius: 10px; padding: 12px 18px;
+    box-shadow: var(--shadow); border: 2px solid var(--border);
+    text-align: center; min-width: 130px; position: relative;
+  }
+  .org-node.highlight { border-color: var(--accent); background: #fff5f5; }
+  .org-node .on-title { font-size: 12px; font-weight: 700; color: var(--primary); }
+  .org-node .on-name { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+  .org-connector { width: 2px; height: 28px; background: var(--border); margin: 0 auto; }
+  .org-connector-h {
+    display: flex; align-items: flex-start; justify-content: center;
+    gap: 0; margin-bottom: 0; position: relative;
+  }
+  .org-h-line { height: 2px; background: var(--border); flex: 1; margin-top: 14px; }
+  .org-children { display: flex; gap: 16px; position: relative; }
+  .org-child-col { display: flex; flex-direction: column; align-items: center; }
+  .org-child-connector { width: 2px; height: 20px; background: var(--border); }
+
+  /* ── TOOLS ── */
+  .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media(max-width: 900px){ .tools-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 600px){ .tools-grid { grid-template-columns: 1fr; } }
+  .tool-card {
+    background: white; border-radius: var(--radius); padding: 20px;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+    transition: transform 0.2s;
+  }
+  .tool-card:hover { transform: translateY(-2px); }
+  .tool-icon { font-size: 1.6rem; margin-bottom: 10px; }
+  .tool-name { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .tool-cat { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-bottom: 8px; }
+  .tool-desc { font-size: 12px; color: var(--text-light); line-height: 1.5; }
+  .cat-ops { background: #e3f2fd; color: #1565c0; }
+  .cat-hr { background: #f3e5f5; color: #6a1b9a; }
+  .cat-fin { background: #e8f5e9; color: #2e7d32; }
+  .cat-comm { background: #fff3e0; color: #e65100; }
+  .cat-retail { background: #fce4ec; color: #880e4f; }
+  .cat-rep { background: #e0f7fa; color: #006064; }
+
+  /* ── CONTACTS ── */
+  .contacts-list { display: flex; flex-direction: column; gap: 12px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 16px;
+    background: white; border-radius: 10px; padding: 16px 20px;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+  }
+  .contact-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 800; color: white;
+    flex-shrink: 0; font-family: monospace;
+  }
+  .contact-name { font-size: 14px; font-weight: 700; color: var(--primary); }
+  .contact-role { font-size: 12px; color: var(--text-light); }
+  .contact-brand { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px; }
+  .cb-lc { background: #fde8ea; color: #c8102e; }
+  .cb-ardene { background: #fde8f2; color: #c2185b; }
+  .cb-cotton { background: #e8f5e9; color: #2e7d32; }
+  .cb-lufian { background: #ede7f6; color: #512da8; }
+  .cb-dada { background: #e3f2fd; color: #1565c0; }
+
+  /* ── SEMANA TIPO ── */
+  .week-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  @media(max-width: 700px){ .week-grid { grid-template-columns: repeat(2, 1fr); } }
+  .day-card {
+    background: white; border-radius: 10px; padding: 16px;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+  }
+  .day-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 8px; }
+  .day-task { font-size: 12px; color: var(--text); padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .day-task:last-child { border-bottom: none; }
+
+  /* ── KPI DASHBOARD ── */
+  .kpi-dashboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  @media(max-width: 900px){ .kpi-dashboard { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 500px){ .kpi-dashboard { grid-template-columns: 1fr; } }
+  .kpi-card {
+    background: white; border-radius: var(--radius); padding: 20px;
+    box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center;
+  }
+  .kpi-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .kpi-metric { font-size: 1.5rem; font-weight: 900; color: var(--primary); }
+  .kpi-name { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+  .kpi-note { font-size: 11px; color: var(--accent); margin-top: 4px; font-weight: 600; }
+
+  /* ── TIPS ── */
+  .tip-box {
+    background: linear-gradient(135deg, #667eea22, #764ba222);
+    border: 1px solid #667eea44;
+    border-left: 4px solid #667eea;
+    border-radius: var(--radius); padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .tip-title { font-size: 13px; font-weight: 800; color: #3730a3; margin-bottom: 6px; }
+  .tip-text { font-size: 13px; color: #4c4f8a; line-height: 1.6; }
+
+  /* ── SECTION HEADER ── */
+  .section-header { margin-bottom: 28px; }
+  .section-header h2 { font-size: 1.6rem; font-weight: 900; color: var(--primary); margin-bottom: 6px; }
+  .section-header p { color: var(--text-light); font-size: 14px; }
+
+  /* ── TAG COLORS ── */
+  .tag-rr { background: #e3f2fd; color: #1565c0; }
+  .tag-ops { background: #f3e5f5; color: #6a1b9a; }
+  .tag-fin { background: #e8f5e9; color: #2e7d32; }
+  .tag-mkt { background: #fff3e0; color: #e65100; }
+  .tag-hr { background: #fce4ec; color: #880e4f; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--primary); color: rgba(255,255,255,0.6);
+    text-align: center; padding: 24px; font-size: 13px; margin-top: 40px;
+  }
+  .footer strong { color: white; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<div class="hero">
+  <div class="hero-badge">🚀 On-Boarding Oficial</div>
+  <h1>Bienvenido a <span>Dada Group</span></h1>
+  <p>Sistema completo de integración para el nuevo <strong>Gerente de Operaciones Retail</strong></p>
+  <div class="hero-brands">
+    <div class="hero-brand lc">LC Waikiki</div>
+    <div class="hero-brand ardene">Ardene</div>
+    <div class="hero-brand cotton">Cotton On</div>
+    <div class="hero-brand lufian">Lufian</div>
+  </div>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><strong>90 días</strong>Plan de Integración</div>
+    <div class="hero-meta-item"><strong>4 marcas</strong>Bajo tu gestión</div>
+    <div class="hero-meta-item"><strong>3 fases</strong>Aprendizaje · Integración · Autonomía</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+<div class="nav-wrapper">
+  <nav class="nav">
+    <button class="nav-btn active" onclick="showSection('plan')"><span class="nav-icon">📋</span>Plan 90 Días</button>
+    <button class="nav-btn" onclick="showSection('empresa')"><span class="nav-icon">🏢</span>Empresa & Valores</button>
+    <button class="nav-btn" onclick="showSection('marcas')"><span class="nav-icon">🏷️</span>Las Marcas</button>
+    <button class="nav-btn" onclick="showSection('operaciones')"><span class="nav-icon">⚙️</span>Operaciones</button>
+    <button class="nav-btn" onclick="showSection('equipo')"><span class="nav-icon">👥</span>Equipo & Estructura</button>
+    <button class="nav-btn" onclick="showSection('herramientas')"><span class="nav-icon">🛠️</span>Herramientas</button>
+    <button class="nav-btn" onclick="showSection('recursos')"><span class="nav-icon">📚</span>Recursos & Dashboards</button>
+    <button class="nav-btn" onclick="showSection('checklist')"><span class="nav-icon">✅</span>Checklist</button>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════ PLAN 90 DÍAS ═══════════════════════════ -->
+<div id="plan" class="section active">
+  <div class="container">
+    <div class="section-header">
+      <h2>📋 Plan de On-Boarding: 90 Días</h2>
+      <p>Tu hoja de ruta para los primeros tres meses en Dada Group</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="card progress-section">
+      <div class="progress-header">
+        <div>
+          <div class="card-title"><span class="icon">🎯</span>Tu progreso general</div>
+          <div class="card-subtitle">Marca los ítems del Checklist para actualizar este indicador</div>
+        </div>
+        <div class="progress-pct" id="pct">0%</div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="pbar" style="width:0%"></div></div>
+      <div class="progress-label" id="plabel">0 de 33 tareas completadas</div>
+    </div>
+
+    <!-- Phases -->
+    <div class="phases">
+      <div class="phase-card phase-1" onclick="showSection('checklist')">
+        <div class="phase-label">Fase 1</div>
+        <div class="phase-title">Aprender & Escuchar</div>
+        <div class="phase-days">Días 1 – 30</div>
+        <div class="phase-desc">Conoce la empresa, las marcas, el equipo y los procesos. Observa antes de actuar.</div>
+        <div class="phase-tasks-count"><span>11</span> actividades clave</div>
+      </div>
+      <div class="phase-card phase-2" onclick="showSection('checklist')">
+        <div class="phase-label">Fase 2</div>
+        <div class="phase-title">Integrarse & Proponer</div>
+        <div class="phase-days">Días 31 – 60</div>
+        <div class="phase-desc">Toma proyectos propios, propón mejoras y consolida relaciones con el equipo.</div>
+        <div class="phase-tasks-count"><span>11</span> actividades clave</div>
+      </div>
+      <div class="phase-card phase-3" onclick="showSection('checklist')">
+        <div class="phase-label">Fase 3</div>
+        <div class="phase-title">Liderar & Ejecutar</div>
+        <div class="phase-days">Días 61 – 90</div>
+        <div class="phase-desc">Opera con autonomía, implementa tu plan de mejora y define objetivos propios.</div>
+        <div class="phase-tasks-count"><span>11</span> actividades clave</div>
+      </div>
+    </div>
+
+    <!-- Semana tipo -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🗓️</span>Semana Tipo – Gerente de Operaciones Retail</div>
+      <div class="card-subtitle">Estructura semanal recomendada una vez ya integrado</div>
+      <div class="week-grid">
+        <div class="day-card">
+          <div class="day-name">Lunes</div>
+          <div class="day-task">📊 Revisión métricas semanales (ventas, tráfico, conversión)</div>
+          <div class="day-task">🤝 Reunión de arranque de semana con gerentes de tienda</div>
+          <div class="day-task">🗺️ Planificación de visitas a punto de venta</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Martes</div>
+          <div class="day-task">🏪 Visita a tiendas LC Waikiki y Ardene</div>
+          <div class="day-task">📋 Auditoría operativa (visual, inventario, personal)</div>
+          <div class="day-task">📝 Reportes y feedback a gerentes</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Miércoles</div>
+          <div class="day-task">🏪 Visita a tiendas Cotton On y Lufian</div>
+          <div class="day-task">🔄 Seguimiento de proyectos y planes de acción abiertos</div>
+          <div class="day-task">📦 Revisión de inventario y abastecimiento</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Jueves</div>
+          <div class="day-task">💼 Reuniones cross-funcionales (RRHH, Finanzas, Marketing)</div>
+          <div class="day-task">📈 Análisis de KPIs por marca y canal</div>
+          <div class="day-task">🛠️ Gestión de incidencias operativas</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Viernes</div>
+          <div class="day-task">📊 Cierre de semana y consolidación de reportes</div>
+          <div class="day-task">🎯 Revisión de metas vs. resultados</div>
+          <div class="day-task">💡 Planificación estratégica semana siguiente</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-title">💡 Consejo para los primeros 30 días</div>
+      <div class="tip-text">Tu prioridad en la primera fase es escuchar y observar. Evita implementar cambios grandes antes de entender por completo cómo funciona cada marca, su historia y los procesos actuales. Los primeros 30 días son tu "licencia para preguntar".</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ EMPRESA & VALORES ═══════════════════════════ -->
+<div id="empresa" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>🏢 Dada Group – Empresa & Valores</h2>
+      <p>Conoce quiénes somos, nuestra misión y lo que nos une</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card"><div class="info-icon">🏷️</div><div class="info-label">Marcas operadas</div><div class="info-value">4 marcas</div></div>
+      <div class="info-card"><div class="info-icon">🛍️</div><div class="info-label">Sector</div><div class="info-value">Retail Moda</div></div>
+      <div class="info-card"><div class="info-icon">🌎</div><div class="info-label">Presencia</div><div class="info-value">Regional</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🎯</span>Misión</div>
+      <div style="font-size:15px; line-height:1.7; color:var(--text);">
+        Llevar moda accesible, de calidad y tendencia a cada cliente, operando con excelencia retail las mejores marcas internacionales. Creamos experiencias de compra memorables a través de equipos comprometidos y operaciones de clase mundial.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🔭</span>Visión</div>
+      <div style="font-size:15px; line-height:1.7; color:var(--text);">
+        Ser el operador retail de referencia en la región, reconocido por la excelencia operativa, el desarrollo de talento y la generación de valor para nuestras marcas, clientes y comunidades.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">💎</span>Nuestros Valores</div>
+      <div class="card-subtitle">Los principios que guían cada decisión en Dada Group</div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <div class="value-title">Trabajo en Equipo</div>
+          <div class="value-desc">Creemos que los grandes resultados nacen de la colaboración. Ganamos y aprendemos juntos, sin importar la marca o el área.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⭐</div>
+          <div class="value-title">Excelencia Operativa</div>
+          <div class="value-desc">Hacemos las cosas bien desde la primera vez. Los detalles importan y los estándares no se negocian en el punto de venta.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">👤</div>
+          <div class="value-title">Orientación al Cliente</div>
+          <div class="value-desc">El cliente es el centro de todo lo que hacemos. Cada decisión operativa se mide por su impacto en la experiencia de compra.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🚀</div>
+          <div class="value-title">Innovación & Agilidad</div>
+          <div class="value-desc">Nos adaptamos rápido al mercado. Experimentamos, aprendemos y mejoramos continuamente nuestros procesos.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">📊</div>
+          <div class="value-title">Gestión por Datos</div>
+          <div class="value-desc">Las decisiones se toman con información. Medimos todo lo que importa y actuamos sobre los datos con disciplina.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🌱</div>
+          <div class="value-title">Desarrollo de Talento</div>
+          <div class="value-desc">Invertimos en las personas. Creemos en el crecimiento interno y en construir líderes desde adentro de la organización.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🗣️</span>Cultura & Comunicación</div>
+      <div class="card-subtitle">Así trabajamos día a día</div>
+      <div style="display:grid; gap:12px; margin-top:8px;">
+        <div style="display:flex; gap:12px; align-items:flex-start; padding:14px; background:var(--light); border-radius:8px;">
+          <span style="font-size:1.3rem;">📣</span>
+          <div>
+            <div style="font-weight:700; font-size:14px; color:var(--primary);">Comunicación directa y respetuosa</div>
+            <div style="font-size:13px; color:var(--text-light); margin-top:3px;">Fomentamos la retroalimentación abierta. Tienes licencia para decir lo que piensas con respeto y basado en datos.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:flex-start; padding:14px; background:var(--light); border-radius:8px;">
+          <span style="font-size:1.3rem;">📐</span>
+          <div>
+            <div style="font-weight:700; font-size:14px; color:var(--primary);">Orientación a resultados</div>
+            <div style="font-size:13px; color:var(--text-light); margin-top:3px;">Medimos el éxito por los resultados, no por las horas trabajadas. El foco siempre es el impacto.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:flex-start; padding:14px; background:var(--light); border-radius:8px;">
+          <span style="font-size:1.3rem;">🔄</span>
+          <div>
+            <div style="font-weight:700; font-size:14px; color:var(--primary);">Reuniones con propósito</div>
+            <div style="font-size:13px; color:var(--text-light); margin-top:3px;">Las reuniones tienen agenda, dueño y cierre de acciones. Se evitan las reuniones sin objetivo claro.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ LAS MARCAS ═══════════════════════════ -->
+<div id="marcas" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>🏷️ Las 4 Marcas de Dada Group</h2>
+      <p>Conoce el ADN, el cliente objetivo y los KPIs clave de cada marca bajo tu gestión</p>
+    </div>
+
+    <div class="brands-grid">
+      <!-- LC Waikiki -->
+      <div class="brand-card lc">
+        <div class="brand-header">
+          <div class="brand-logo">LC</div>
+          <div>
+            <div class="brand-name">LC Waikiki</div>
+            <div class="brand-type">Moda familiar accesible · Origen turco</div>
+          </div>
+        </div>
+        <div class="brand-info">
+          Fundada en 1988, se convirtió en marca turca en 1997. Facturó <strong>$5,500M USD en 2024</strong> y está presente en <strong>más de 30 países</strong> con 55,000 colaboradores. Misión: <em>"Todos merecen vestir bien."</em> Líder del mercado turco desde 2004 en todas las categorías de ropa.
+        </div>
+        <div class="brand-kpis">
+          <div class="kpi-row"><span class="kpi-label">Segmento objetivo</span><span class="kpi-value">Familia / Masivo</span></div>
+          <div class="kpi-row"><span class="kpi-label">Propuesta de valor</span><span class="kpi-value">"Todos merecen vestir bien"</span></div>
+          <div class="kpi-row"><span class="kpi-label">KPIs clave</span><span class="kpi-value">UPT · Conversión · Tráfico</span></div>
+          <div class="kpi-row"><span class="kpi-label">Sistema exclusivo</span><span class="kpi-value">Retail Store (RS) + ICG</span></div>
+          <div class="kpi-row"><span class="kpi-label">Capacitación</span><span class="kpi-value">LC Waikiki Academy (plataforma)</span></div>
+          <div class="kpi-row"><span class="kpi-label">Valores</span><span class="kpi-value">Cliente · Virtud · Equipo · Expertise</span></div>
+        </div>
+      </div>
+
+      <!-- Ardene -->
+      <div class="brand-card ardene">
+        <div class="brand-header">
+          <div class="brand-logo">AR</div>
+          <div>
+            <div class="brand-name">Ardene</div>
+            <div class="brand-type">Moda juvenil y accesorios · Origen canadiense</div>
+          </div>
+        </div>
+        <div class="brand-info">
+          Ardene es la marca preferida de las jóvenes latinoamericanas. Combina moda fast-fashion con una enorme variedad de accesorios, joyería y artículos lifestyle. Su atmósfera de tienda es energética, colorida y orientada a las Gen Z.
+        </div>
+        <div class="brand-kpis">
+          <div class="kpi-row"><span class="kpi-label">Segmento objetivo</span><span class="kpi-value">Mujer 14–28 años (Gen Z)</span></div>
+          <div class="kpi-row"><span class="kpi-label">Propuesta de valor</span><span class="kpi-value">Tendencia · Accesorios · Precio bajo</span></div>
+          <div class="kpi-row"><span class="kpi-label">KPI principal</span><span class="kpi-value">Accesorios/transacción · Conversión</span></div>
+          <div class="kpi-row"><span class="kpi-label">Modelo de tienda</span><span class="kpi-value">Formato mediano · Plaza / Centro comercial</span></div>
+          <div class="kpi-row"><span class="kpi-label">Temporadas</span><span class="kpi-value">Drops semanales / Collab especiales</span></div>
+        </div>
+      </div>
+
+      <!-- Cotton On -->
+      <div class="brand-card cotton">
+        <div class="brand-header">
+          <div class="brand-logo">CO</div>
+          <div>
+            <div class="brand-name">Cotton On</div>
+            <div class="brand-type">Lifestyle casual · Origen australiano</div>
+          </div>
+        </div>
+        <div class="brand-info">
+          Cotton On Group es una marca global de estilo de vida casual con un fuerte componente de sustentabilidad. Incluye sub-marcas como Cotton On Kids, Typo y Rubi. Se distingue por su diseño australiano, básicos de calidad y compromiso con el comercio ético.
+        </div>
+        <div class="brand-kpis">
+          <div class="kpi-row"><span class="kpi-label">Segmento objetivo</span><span class="kpi-value">Millenials y familia joven</span></div>
+          <div class="kpi-row"><span class="kpi-label">Propuesta de valor</span><span class="kpi-value">Básicos · Sustentabilidad · Lifestyle</span></div>
+          <div class="kpi-row"><span class="kpi-label">KPI principal</span><span class="kpi-value">Lealtad · NPS · Venta omnicanal</span></div>
+          <div class="kpi-row"><span class="kpi-label">Modelo de tienda</span><span class="kpi-value">Multi-formato (CO, Kids, Typo)</span></div>
+          <div class="kpi-row"><span class="kpi-value" style="font-size:11px; color:var(--success);">🌿 Política de sustentabilidad activa</span></div>
+        </div>
+      </div>
+
+      <!-- Lufian -->
+      <div class="brand-card lufian">
+        <div class="brand-header">
+          <div class="brand-logo">LF</div>
+          <div>
+            <div class="brand-name">Lufian</div>
+            <div class="brand-type">Moda sport & casual premium · Origen turco</div>
+          </div>
+        </div>
+        <div class="brand-info">
+          Fundada en 1995, Lufian comenzó ofreciendo servicios de diseño y producción a marcas globales. Desde 2005 opera bajo su propio nombre. Se enfoca en ropa informal de lujo para hombre — combinando comodidad y sofisticación con tejidos de altísima calidad. Manual de operaciones de 62 páginas como referencia.
+        </div>
+        <div class="brand-kpis">
+          <div class="kpi-row"><span class="kpi-label">Segmento objetivo</span><span class="kpi-value">Adulto 25–45 años, activo</span></div>
+          <div class="kpi-row"><span class="kpi-label">Propuesta de valor</span><span class="kpi-value">Calidad · Sportwear · Estilo</span></div>
+          <div class="kpi-row"><span class="kpi-label">KPI principal</span><span class="kpi-value">Ticket promedio · Margen bruto</span></div>
+          <div class="kpi-row"><span class="kpi-label">Modelo de tienda</span><span class="kpi-value">Formato compacto · Premium</span></div>
+          <div class="kpi-row"><span class="kpi-label">Diferenciador</span><span class="kpi-value">Calidad de tejido turco</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparativo -->
+    <div class="card" style="margin-top:8px;">
+      <div class="card-title"><span class="icon">📊</span>Comparativo Rápido de Marcas</div>
+      <div class="card-subtitle">Cómo se diferencian operativamente</div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+          <thead>
+            <tr style="background:var(--light);">
+              <th style="padding:12px 14px; text-align:left; font-weight:700; color:var(--primary);">Aspecto</th>
+              <th style="padding:12px 14px; text-align:center; color:var(--lc-color); font-weight:700;">LC Waikiki</th>
+              <th style="padding:12px 14px; text-align:center; color:var(--ardene-color); font-weight:700;">Ardene</th>
+              <th style="padding:12px 14px; text-align:center; color:var(--cotton-color); font-weight:700;">Cotton On</th>
+              <th style="padding:12px 14px; text-align:center; color:var(--lufian-color); font-weight:700;">Lufian</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:10px 14px; font-weight:600;">Tamaño de tienda</td>
+              <td style="padding:10px 14px; text-align:center;">Grande (>800 m²)</td>
+              <td style="padding:10px 14px; text-align:center;">Mediano (~200 m²)</td>
+              <td style="padding:10px 14px; text-align:center;">Variable (multi-formato)</td>
+              <td style="padding:10px 14px; text-align:center;">Compacto (~150 m²)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border); background:#fafafa;">
+              <td style="padding:10px 14px; font-weight:600;">Frecuencia de nuevas colecciones</td>
+              <td style="padding:10px 14px; text-align:center;">Semanal</td>
+              <td style="padding:10px 14px; text-align:center;">Semanal / Drops</td>
+              <td style="padding:10px 14px; text-align:center;">Mensual</td>
+              <td style="padding:10px 14px; text-align:center;">Estacional</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:10px 14px; font-weight:600;">Complejidad operativa</td>
+              <td style="padding:10px 14px; text-align:center;">Alta (volumen)</td>
+              <td style="padding:10px 14px; text-align:center;">Media</td>
+              <td style="padding:10px 14px; text-align:center;">Media-Alta</td>
+              <td style="padding:10px 14px; text-align:center;">Baja-Media</td>
+            </tr>
+            <tr style="background:#fafafa;">
+              <td style="padding:10px 14px; font-weight:600;">Foco de VM (Visual Merchandising)</td>
+              <td style="padding:10px 14px; text-align:center;">Precio y volumen</td>
+              <td style="padding:10px 14px; text-align:center;">Tendencia y color</td>
+              <td style="padding:10px 14px; text-align:center;">Lifestyle y sustentabilidad</td>
+              <td style="padding:10px 14px; text-align:center;">Calidad y aspiracional</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ OPERACIONES ═══════════════════════════ -->
+<div id="operaciones" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>⚙️ Operaciones Retail</h2>
+      <p>Procesos clave, KPIs y estándares que debes dominar</p>
+    </div>
+
+    <!-- KPI Dashboard -->
+    <div class="kpi-dashboard">
+      <div class="kpi-card">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-metric">Ventas</div>
+        <div class="kpi-name">Ventas netas diarias / semanales</div>
+        <div class="kpi-note">vs. Presupuesto y año anterior</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🛒</div>
+        <div class="kpi-metric">UPT</div>
+        <div class="kpi-name">Unidades por transacción</div>
+        <div class="kpi-note">Indicador de efectividad en piso</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🔄</div>
+        <div class="kpi-metric">Conv.</div>
+        <div class="kpi-name">Tasa de conversión</div>
+        <div class="kpi-note">Visitantes → compradores</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📦</div>
+        <div class="kpi-metric">Inv.</div>
+        <div class="kpi-name">Rotación de inventario</div>
+        <div class="kpi-note">Semanas de cobertura</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">👟</div>
+        <div class="kpi-metric">Tráfico</div>
+        <div class="kpi-name">Visitantes a tienda</div>
+        <div class="kpi-note">Tendencia y estacionalidad</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">💳</div>
+        <div class="kpi-metric">Ticket</div>
+        <div class="kpi-name">Ticket promedio</div>
+        <div class="kpi-note">Valor promedio por compra</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🎯</div>
+        <div class="kpi-metric">Merma</div>
+        <div class="kpi-name">% de merma sobre ventas</div>
+        <div class="kpi-note">Control de pérdida desconocida</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">😊</div>
+        <div class="kpi-metric">NPS</div>
+        <div class="kpi-name">Net Promoter Score</div>
+        <div class="kpi-note">Satisfacción del cliente</div>
+      </div>
+    </div>
+
+    <!-- Procesos -->
+    <!-- Responsabilidades reales del rol -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🎯</span>Responsabilidades del Gerente de Operaciones – Dada Group</div>
+      <div class="card-subtitle">Extraído directamente del documento oficial de Roles & Responsabilidades del grupo</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">👥</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Manejo de personal de oficina</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Dirigir, supervisar y gestionar reuniones estratégicas, con rendición de cuentas hacia el Brand Manager.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">🏢</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Office Ops & Store Ops</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Comunicación constante con todos los departamentos y apoyo a las tiendas para que su operación fluya bien.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">📋</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Estándares de tiendas</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Desarrollar checklists y herramientas que aseguren que las tiendas operen siempre bajo los estándares.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">🌎</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Comunicación con Retails/Countries</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Mantener comunicación constante con los países para soporte y seguimiento que el trabajo a distancia requiere.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">📊</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Indicadores de operación</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Seguimiento y análisis de indicadores en conjunto con las tiendas para encontrar oportunidades de mejora.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">📦</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Recepción & reposición de mercancía</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Manejo de indicadores y procesos para mejorar tiempos de recepción y reposición en piso.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">🎓</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Capacitaciones</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Coordinación de capacitaciones y workshops para inducción a conceptos clave de las marcas y la operación.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">💰</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Salarios y Comisiones</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Revisión de presupuestos para asegurar competitividad siendo responsables con la rentabilidad del negocio.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">🏗️</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Aperturas de tiendas</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Apoyo integral desde trazabilidad de muebles y supplies hasta el proceso de montaje de tienda.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:#fff5f5; border-radius:8px; align-items:flex-start; border:1px solid #fcc;">
+          <span style="font-size:1.2rem; flex-shrink:0;">🖥️</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--lc-color);">Retail Store LCW (específico LC Waikiki)</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Debes capacitar y hacer seguimiento con tiendas y auditoría para mantener las operaciones RS siempre al día conforme los estándares de la marca.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">🧹</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Manejo de Supplies</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Control de inventario y compra de supplies para todas las tiendas.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <span style="font-size:1.2rem; flex-shrink:0;">✈️</span>
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Viajes</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Disponibilidad para viajar a tiendas en la región según las demandas de las marcas y las necesidades operativas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🔄</span>Ciclo Operativo Mensual</div>
+      <div class="card-subtitle">Ritmo de gestión estándar en todas las marcas</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">📅 Semana 1 del mes</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+            ✦ Cierre y análisis del mes anterior<br>
+            ✦ Revisión de presupuesto mensual<br>
+            ✦ Establecimiento de metas por tienda<br>
+            ✦ Planificación de campañas en curso
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">📅 Semanas 2 y 3</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+            ✦ Ejecución y seguimiento diario de KPIs<br>
+            ✦ Visitas a puntos de venta<br>
+            ✦ Auditorías operativas y VM<br>
+            ✦ Reposición y gestión de inventario
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">📅 Semana 4</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+            ✦ Proyección de cierre mensual<br>
+            ✦ Acciones correctivas si hay brechas<br>
+            ✦ Reunión de resultados con dirección<br>
+            ✦ Planificación del mes siguiente
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">🔁 Recurrente (diario)</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+            ✦ Reporte de ventas del día anterior<br>
+            ✦ Revisión de incidencias de tiendas<br>
+            ✦ Comunicación con gerentes de tienda<br>
+            ✦ Monitoreo de stock crítico
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🏪</span>Estándares de Punto de Venta</div>
+      <div class="card-subtitle">Criterios de evaluación en visitas a tienda</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:8px;">
+        <div style="background:var(--light); border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">👗 Visual Merchandising</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Planimetría actualizada<br>• Maniquíes vestidos<br>• Precios visibles<br>• Folding y display correcto<br>• Limpieza y orden
+          </div>
+        </div>
+        <div style="background:var(--light); border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">📦 Operaciones / Stock</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Inventario en sistema actualizado<br>• Bodega organizada<br>• Sin roturas de stock visibles<br>• Proceso de recepción cumplido<br>• Control de merma activo
+          </div>
+        </div>
+        <div style="background:var(--light); border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">👥 Equipo</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Uniformidad y presentación<br>• Piso cubierto según turnos<br>• Actitud de venta activa<br>• Conocimiento del producto<br>• Registro de metas por asesor
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-title">📌 Tip Operativo</div>
+      <div class="tip-text">En tus primeras visitas a tienda, ve como observador, no como auditor. Toma nota de todo pero evita dar feedback correctivo inmediato. Primero entiende por qué las cosas funcionan como funcionan antes de proponer cambios. Esto genera confianza con los gerentes de tienda.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ EQUIPO ═══════════════════════════ -->
+<div id="equipo" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>👥 Equipo & Estructura Organizacional</h2>
+      <p>Conoce a las personas clave y cómo está organizado el equipo</p>
+    </div>
+
+    <!-- Org chart -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🗂️</span>Estructura del Equipo – Dada Group Office</div>
+      <div class="card-subtitle">Roles del equipo de oficina con los que trabajarás directamente</div>
+      <div class="org-wrapper" style="margin-top:20px; padding:10px 0;">
+        <div class="org">
+          <!-- Brand Manager -->
+          <div class="org-level">
+            <div class="org-node" style="background:linear-gradient(135deg,var(--primary),#0f3460); color:white; border-color:var(--primary); min-width:180px;">
+              <div class="on-title" style="color:white;">Brand Manager</div>
+              <div class="on-name" style="color:rgba(255,255,255,0.7);">Dirección estratégica del grupo</div>
+            </div>
+          </div>
+          <div class="org-connector"></div>
+
+          <!-- Brand Coordinator -->
+          <div class="org-level">
+            <div class="org-node" style="border-color:#4299e1; min-width:180px;">
+              <div class="on-title" style="color:#2b6cb0;">Brand Coordinator</div>
+              <div class="on-name">Coordinación y follow-up de equipo</div>
+            </div>
+          </div>
+          <div class="org-connector"></div>
+
+          <!-- Nivel de equipos funcionales -->
+          <div class="org-level" style="gap:10px; flex-wrap:wrap; justify-content:center;">
+            <div class="org-node highlight" style="min-width:120px;">
+              <div class="on-title" style="color:var(--accent);">📍 Operaciones</div>
+              <div class="on-name">Tú – Gerente de Ops</div>
+            </div>
+            <div class="org-node" style="min-width:120px;">
+              <div class="on-title">MP&A</div>
+              <div class="on-name">Planning & Allocation</div>
+            </div>
+            <div class="org-node" style="min-width:120px;">
+              <div class="on-title">Merchant</div>
+              <div class="on-name">Producto & Precios</div>
+            </div>
+            <div class="org-node" style="min-width:120px;">
+              <div class="on-title">Visual</div>
+              <div class="on-name">Visual Merchandising</div>
+            </div>
+            <div class="org-node" style="min-width:120px;">
+              <div class="on-title">Mercadeo</div>
+              <div class="on-name">Marketing</div>
+            </div>
+            <div class="org-node" style="min-width:120px;">
+              <div class="on-title">Auditoría</div>
+              <div class="on-name">Control de inventario</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:18px; padding:14px; background:#fff5f5; border-radius:8px; border-left:4px solid var(--accent);">
+        <div style="font-size:13px; font-weight:700; color:var(--primary); margin-bottom:6px;">💡 Tu posición en el equipo</div>
+        <div style="font-size:13px; color:var(--text); line-height:1.6;">Como Gerente de Operaciones eres el nexo entre el equipo de oficina (MP&A, Visual, Auditoría) y las tiendas. Reportas al Brand Coordinator y Brand Manager. Tu trabajo requiere coordinación constante con todos los departamentos y con los Retails/Countries.</div>
+      </div>
+    </div>
+
+    <!-- Roles clave con los que interactuarás -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🤝</span>Roles Clave con los que Interactuarás</div>
+      <div class="card-subtitle">Basado en la estructura de responsabilidades de Dada Group</div>
+      <div class="contacts-list" style="margin-top:12px;">
+        <div class="contact-item">
+          <div class="contact-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2);">BM</div>
+          <div>
+            <div class="contact-name">Brand Manager</div>
+            <div class="contact-role">Tu reporte directo. Dirección estratégica, rentabilidad, relación con marcas y aperturas. Reunión periódica de resultados y estrategia.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-avatar" style="background:#4299e1;">BC</div>
+          <div>
+            <div class="contact-name">Brand Coordinator</div>
+            <div class="contact-role">Apoyo directo al gerente de operaciones. Coordina reuniones estratégicas, dirige llamadas con tiendas y gestiona la inducción de nuevo personal de oficina.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-avatar" style="background:#6c63ff;">PA</div>
+          <div>
+            <div class="contact-name">MP&A – Planning & Allocation</div>
+            <div class="contact-role">Gestión de inventarios, despachos, análisis de ventas, forecasts y estrategia de liquidación. Comunicación constante para necesidades de tiendas.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-avatar" style="background:#e67e22;">MC</div>
+          <div>
+            <div class="contact-name">Merchant</div>
+            <div class="contact-role">Análisis de producto/tallas, precios, benchmarking vs. competencia y feedback cualitativo comercial de tiendas. Coordina llamadas Gemba con LCW.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-avatar" style="background:#e91e8c;">VM</div>
+          <div>
+            <div class="contact-name">Visual Merchandising</div>
+            <div class="contact-role">Estándares visuales de tiendas, supervisión de displays y escaparates, capacitaciones de VM y coordinación de artes in-store. Socio clave en aperturas.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-avatar" style="background:#27ae60;">MK</div>
+          <div>
+            <div class="contact-name">Mercadeo (Marketing)</div>
+            <div class="contact-role">Estrategia de marketing por marca, social media, promociones y eventos/activaciones de tiendas. Coordinan contigo para ejecución operativa de campañas.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-avatar" style="background:#e74c3c;">AU</div>
+          <div>
+            <div class="contact-name">Auditoría</div>
+            <div class="contact-role">Control de inventario ICG y Retail Store (LCW). Manejo de defectuosos, conciliaciones, ajustes y reportería. Trabajo conjunto en control de merma.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-avatar" style="background:#95a5a6;">LG</div>
+          <div>
+            <div class="contact-name">Logística / IT / Arquitectura</div>
+            <div class="contact-role">Equipos de soporte críticos para la operación. Especialmente relevantes en procesos de apertura de tiendas y gestión de despachos.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-title">🤝 Estrategia de relaciones en los primeros 30 días</div>
+      <div class="tip-text">Agenda una sesión 1:1 con cada uno de los contactos clave en tu primera semana. El objetivo no es presentarte formalmente, sino escucharlos: ¿Qué funciona bien? ¿Qué les frustra? ¿Qué esperan de ti? Estas conversaciones te darán el mapa real de la organización.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ HERRAMIENTAS ═══════════════════════════ -->
+<div id="herramientas" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>🛠️ Herramientas & Sistemas</h2>
+      <p>Los sistemas y plataformas que usarás en tu gestión diaria</p>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-icon">🖥️</div>
+        <div class="tool-name">ICG (Sistema Central)</div>
+        <div class="tool-cat cat-ops">Operaciones</div>
+        <div class="tool-desc">Sistema principal de inventario y ventas del grupo. Gestión de stock, traspasos entre tiendas, ajustes de inventario, activación de cajas y conciliaciones. Usado por Operaciones y Auditoría.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🏪</div>
+        <div class="tool-name">Retail Store (LCW)</div>
+        <div class="tool-cat cat-retail">Retail – LC Waikiki</div>
+        <div class="tool-desc">Sistema específico de LC Waikiki para gestión de tiendas (RS). Requiere capacitación y seguimiento especial. La auditoría concilia constantemente stock ICG vs. RS para mantenerlos parejos.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🎓</div>
+        <div class="tool-name">LC Waikiki Academy</div>
+        <div class="tool-cat cat-retail">LC Waikiki</div>
+        <div class="tool-desc">Plataforma de capacitación oficial de LC Waikiki. Registro y seguimiento de cursos y certificaciones del personal de tiendas LCW. Solicita tu acceso en la primera semana.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📈</div>
+        <div class="tool-name">Dashboard de KPIs</div>
+        <div class="tool-cat cat-rep">Reportes</div>
+        <div class="tool-desc">Panel de métricas de ventas, tráfico, conversión, UPT y ticket promedio por tienda y marca. Base para las llamadas periódicas con tiendas y el reporte semanal a dirección.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">💰</div>
+        <div class="tool-name">Presupuesto & Salarios</div>
+        <div class="tool-cat cat-fin">Finanzas</div>
+        <div class="tool-desc">Seguimiento de presupuesto de salarios y comisiones por tienda. Asegura que el equipo sea competitivo mientras se mantiene responsabilidad con la rentabilidad del negocio.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📦</div>
+        <div class="tool-name">Control de Supplies</div>
+        <div class="tool-cat cat-ops">Operaciones</div>
+        <div class="tool-desc">Control de inventario y compra de supplies (empaques, materiales, insumos) para todas las tiendas. Coordinado desde operaciones con logística.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">💬</div>
+        <div class="tool-name">Comunicación con Retails</div>
+        <div class="tool-cat cat-comm">Comunicación</div>
+        <div class="tool-desc">Canal de comunicación constante con los países/tiendas para dar soporte y seguimiento. El trabajo a distancia requiere canales fluidos y bien establecidos.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📋</div>
+        <div class="tool-name">Reportes de Defectuosos</div>
+        <div class="tool-cat cat-rep">Auditoría</div>
+        <div class="tool-desc">Formatos establecidos por cada marca para reportar mercancía defectuosa recibida. El gerente de operaciones coordina con auditoría y las marcas para las notas de crédito correspondientes.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🏗️</div>
+        <div class="tool-name">Gestión de Aperturas</div>
+        <div class="tool-cat cat-ops">Proyectos</div>
+        <div class="tool-desc">Coordinación con Arquitectura, Logística e IT para nuevas aperturas de tiendas. Desde seguimiento de muebles y supplies hasta el montaje final. Proceso crítico donde Operaciones juega un rol central.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:8px;">
+      <div class="card-title"><span class="icon">🔐</span>Accesos que debes solicitar en tu primera semana</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span>🔑</span><span><strong>ERP / Sistema central</strong> – solicitar a IT</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span>🔑</span><span><strong>Dashboard de KPIs</strong> – solicitar a tu líder</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span>🔑</span><span><strong>Correo corporativo</strong> – solicitar a IT</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span>🔑</span><span><strong>Sistema RRHH</strong> – solicitar a RRHH</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span>🔑</span><span><strong>Canales de comunicación</strong> – solicitar a tu líder</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span>🔑</span><span><strong>Reportes y presupuestos</strong> – solicitar a Finanzas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ RECURSOS & DASHBOARDS ═══════════════════════════ -->
+<div id="recursos" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>📚 Recursos & Dashboards por Marca</h2>
+      <p>Materiales de inducción, presentaciones interactivas y recursos oficiales de cada marca</p>
+    </div>
+
+    <!-- Presentaciones de bienvenida -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🎯</span>Presentaciones de Bienvenida – Inducción por Marca</div>
+      <div class="card-subtitle">Materiales interactivos de inducción preparados para ti. Haz clic para abrirlos.</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:16px;">
+
+        <a href="LC Waikiki/genially_6909af552ffd66bf84593564/genially.html" target="_blank" style="text-decoration:none;">
+          <div style="background:linear-gradient(135deg,#c8102e,#e84d6a); border-radius:var(--radius); padding:24px; color:white; text-align:center; cursor:pointer; transition:transform 0.2s; box-shadow:var(--shadow-lg);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="font-size:2.2rem; margin-bottom:10px;">🔴</div>
+            <div style="font-size:1rem; font-weight:800; margin-bottom:6px;">LC Waikiki</div>
+            <div style="font-size:12px; opacity:0.85; margin-bottom:14px;">Bienvenido a la familia LC Waikiki</div>
+            <div style="background:rgba(255,255,255,0.2); border-radius:20px; padding:6px 16px; font-size:12px; font-weight:700; display:inline-block;">▶ Abrir presentación</div>
+          </div>
+        </a>
+
+        <a href="Cotton On/Genailly_Main/genially.html" target="_blank" style="text-decoration:none;">
+          <div style="background:linear-gradient(135deg,#2d6a4f,#40916c); border-radius:var(--radius); padding:24px; color:white; text-align:center; cursor:pointer; transition:transform 0.2s; box-shadow:var(--shadow-lg);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="font-size:2.2rem; margin-bottom:10px;">🟢</div>
+            <div style="font-size:1rem; font-weight:800; margin-bottom:6px;">Cotton On</div>
+            <div style="font-size:12px; opacity:0.85; margin-bottom:14px;">Bienvenido a la familia Cotton On</div>
+            <div style="background:rgba(255,255,255,0.2); border-radius:20px; padding:6px 16px; font-size:12px; font-weight:700; display:inline-block;">▶ Abrir presentación</div>
+          </div>
+        </a>
+
+        <a href="Ardene/genially_68cafa25d1fcf3d4d2f3dffe/genially.html" target="_blank" style="text-decoration:none;">
+          <div style="background:linear-gradient(135deg,#c2185b,#e91e8c); border-radius:var(--radius); padding:24px; color:white; text-align:center; cursor:pointer; transition:transform 0.2s; box-shadow:var(--shadow-lg);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="font-size:2.2rem; margin-bottom:10px;">🩷</div>
+            <div style="font-size:1rem; font-weight:800; margin-bottom:6px;">Ardene</div>
+            <div style="font-size:12px; opacity:0.85; margin-bottom:14px;">Bienvenid@ a la familia Ardene</div>
+            <div style="background:rgba(255,255,255,0.2); border-radius:20px; padding:6px 16px; font-size:12px; font-weight:700; display:inline-block;">▶ Abrir presentación</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Dashboard KPIs interactivo -->
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span>Dashboard de KPIs Retail</div>
+      <div class="card-subtitle">Referencia rápida de los indicadores clave que monitorearás en todas las marcas</div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:16px;">
+
+        <!-- Tabla de KPIs por marca -->
+        <div style="overflow-x:auto;">
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:10px;">📋 KPIs Principales por Marca</div>
+          <table style="width:100%; border-collapse:collapse; font-size:12px;">
+            <thead>
+              <tr style="background:var(--primary); color:white;">
+                <th style="padding:8px 10px; text-align:left; border-radius:6px 0 0 0;">KPI</th>
+                <th style="padding:8px 10px; text-align:center; color:#ffa0ae;">LC</th>
+                <th style="padding:8px 10px; text-align:center; color:#ffb3d1;">Ardene</th>
+                <th style="padding:8px 10px; text-align:center; color:#a8e6c3;">Cotton</th>
+                <th style="padding:8px 10px; text-align:center; color:#c4c0ff; border-radius:0 6px 0 0;">Lufian</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:8px 10px; font-weight:600;">Ventas Diarias</td>
+                <td style="padding:8px 10px; text-align:center;">🔴 ★★★</td>
+                <td style="padding:8px 10px; text-align:center;">🩷 ★★★</td>
+                <td style="padding:8px 10px; text-align:center;">🟢 ★★★</td>
+                <td style="padding:8px 10px; text-align:center;">🟣 ★★★</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border); background:#fafafa;">
+                <td style="padding:8px 10px; font-weight:600;">Conversión</td>
+                <td style="padding:8px 10px; text-align:center;">Alta</td>
+                <td style="padding:8px 10px; text-align:center;">Alta</td>
+                <td style="padding:8px 10px; text-align:center;">Media</td>
+                <td style="padding:8px 10px; text-align:center;">Media</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:8px 10px; font-weight:600;">UPT / APT</td>
+                <td style="padding:8px 10px; text-align:center;">UPT</td>
+                <td style="padding:8px 10px; text-align:center;">APT/DPT</td>
+                <td style="padding:8px 10px; text-align:center;">UPT</td>
+                <td style="padding:8px 10px; text-align:center;">UPT</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border); background:#fafafa;">
+                <td style="padding:8px 10px; font-weight:600;">Ticket Prom.</td>
+                <td style="padding:8px 10px; text-align:center;">Bajo</td>
+                <td style="padding:8px 10px; text-align:center;">Muy bajo</td>
+                <td style="padding:8px 10px; text-align:center;">Medio</td>
+                <td style="padding:8px 10px; text-align:center;">Medio-alto</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:8px 10px; font-weight:600;">Tráfico</td>
+                <td style="padding:8px 10px; text-align:center;">Muy alto</td>
+                <td style="padding:8px 10px; text-align:center;">Alto</td>
+                <td style="padding:8px 10px; text-align:center;">Medio</td>
+                <td style="padding:8px 10px; text-align:center;">Bajo-medio</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border); background:#fafafa;">
+                <td style="padding:8px 10px; font-weight:600;">Merma</td>
+                <td style="padding:8px 10px; text-align:center;" colspan="4">Monitoreo conjunto (ICG + RS para LCW)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Glosario KPIs -->
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:10px;">📖 Glosario de KPIs Retail</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="background:var(--light); border-radius:8px; padding:10px 12px;">
+              <div style="font-weight:700; font-size:12px; color:var(--primary);">UPT – Units Per Transaction</div>
+              <div style="font-size:12px; color:var(--text-light);">Unidades promedio por compra. <em>Ventas en unidades ÷ Nº de transacciones</em></div>
+            </div>
+            <div style="background:var(--light); border-radius:8px; padding:10px 12px;">
+              <div style="font-weight:700; font-size:12px; color:var(--primary);">APT / DPT – Ardene ($ por transacción)</div>
+              <div style="font-size:12px; color:var(--text-light);">Ventas totales ÷ transacciones. Métrica estrella en Ardene junto a conversión.</div>
+            </div>
+            <div style="background:var(--light); border-radius:8px; padding:10px 12px;">
+              <div style="font-weight:700; font-size:12px; color:var(--primary);">Conversión</div>
+              <div style="font-size:12px; color:var(--text-light);">% de visitantes que compran. <em>Transacciones ÷ Tráfico × 100</em></div>
+            </div>
+            <div style="background:var(--light); border-radius:8px; padding:10px 12px;">
+              <div style="font-weight:700; font-size:12px; color:var(--primary);">Ticket Promedio</div>
+              <div style="font-size:12px; color:var(--text-light);">Valor promedio de compra. <em>Ventas netas ÷ Nº transacciones</em></div>
+            </div>
+            <div style="background:var(--light); border-radius:8px; padding:10px 12px;">
+              <div style="font-weight:700; font-size:12px; color:var(--primary);">Semanas de Cobertura</div>
+              <div style="font-size:12px; color:var(--text-light);">Inventario disponible ÷ ventas promedio semanal. Indicador de abastecimiento.</div>
+            </div>
+            <div style="background:var(--light); border-radius:8px; padding:10px 12px;">
+              <div style="font-weight:700; font-size:12px; color:var(--primary);">Merma / Pérdida Desconocida</div>
+              <div style="font-size:12px; color:var(--text-light);">Diferencia entre el inventario teórico y el físico. Se controla con ICG y RS (LCW).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manuales disponibles -->
+    <div class="card">
+      <div class="card-title"><span class="icon">📁</span>Manuales Operativos Disponibles en tu Carpeta</div>
+      <div class="card-subtitle">Documentos de referencia que debes leer en tu primera semana</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
+
+        <div style="border-left:4px solid var(--lc-color); background:#fff5f5; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--lc-color); margin-bottom:6px;">🔴 LC Waikiki</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Manual Operativo Tienda LCW (completo)<br>
+            • Manual Dynamics (sistema)<br>
+            • Manual de Cierre – Invoice ID<br>
+            • Retailstore Instruction Manual (ESP)<br>
+            • Mobile Info – Stock Tracking<br>
+            • Manual NSO (nuevas aperturas)<br>
+            • LC Waikiki Academy – Guía de plataforma<br>
+            • LCW Brand PPT (historia y valores de marca)<br>
+            • Goal Guide (ING)
+          </div>
+        </div>
+
+        <div style="border-left:4px solid var(--ardene-color); background:#fff0f7; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--ardene-color); margin-bottom:6px;">🩷 Ardene</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • KPI's Referencia Rápida<br>
+            • Management Onboarding – Trainee Guide<br>
+            • Management Onboarding – Trainee Workbook<br>
+            • One Ardene – Dress Code Policy<br>
+            • Presentación interactiva de bienvenida
+          </div>
+        </div>
+
+        <div style="border-left:4px solid var(--cotton-color); background:#f0fff8; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--cotton-color); margin-bottom:6px;">🟢 Cotton On</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Presentación interactiva de bienvenida<br>
+            • (Consultar con el equipo por materiales adicionales)
+          </div>
+        </div>
+
+        <div style="border-left:4px solid var(--lufian-color); background:#f5f3ff; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--lufian-color); margin-bottom:6px;">🟣 Lufian</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Manual de Operaciones ESP (62 páginas)<br>
+            • Guía de Producto<br>
+            • VM Guide Book (estándares visuales)<br>
+            • Cómo presentar resultados de tienda
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-title">📌 Orden de lectura recomendado para la primera semana</div>
+      <div class="tip-text">
+        <strong>Día 1–2:</strong> Presentaciones interactivas de las 3 marcas (LC Waikiki, Cotton On, Ardene) + LCW Brand PPT.<br>
+        <strong>Día 3–4:</strong> Manual Operativo Tienda LCW + Manual de Operaciones Lufian + KPIs Referencia Ardene.<br>
+        <strong>Día 5:</strong> Manuales de sistemas (Dynamics, Retailstore, Mobile Info Stock Tracking).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ CHECKLIST ═══════════════════════════ -->
+<div id="checklist" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>✅ Checklist de On-Boarding</h2>
+      <p>Marca cada ítem al completarlo — tu progreso se actualiza automáticamente</p>
+    </div>
+
+    <!-- FASE 1 -->
+    <div class="checklist-phase">
+      <div class="checklist-phase-title cp-1">🔵 Fase 1: Aprender & Escuchar — Días 1 al 30</div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Reunión de bienvenida con la Dirección General</div>
+          <div class="ci-detail">Agenda 1:1 con tu líder para entender expectativas, prioridades y estilo de trabajo</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Completar proceso de inducción administrativa (contratos, nómina, beneficios)</div>
+          <div class="ci-detail">Firma de contrato, alta en sistemas de nómina, apertura de cuenta si aplica</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Solicitar y configurar todos los accesos a sistemas</div>
+          <div class="ci-detail">ERP, correo, dashboard de KPIs, sistemas de comunicación interna</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">1:1 con cada gerente de tienda / marca (LC Waikiki, Ardene, Cotton On, Lufian)</div>
+          <div class="ci-detail">Escucha activa: ¿Qué funciona? ¿Qué no? ¿Qué esperan de ti?</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Visitar físicamente cada tienda de las 4 marcas</div>
+          <div class="ci-detail">Visita de observación sin agenda de auditoría. Conoce el espacio, el equipo y el cliente</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Reuniones de conocimiento con áreas transversales (RRHH, Finanzas, Marketing)</div>
+          <div class="ci-detail">Entiende cómo trabajar con cada área, sus ritmos y sus necesidades de ti</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Revisar resultados históricos de los últimos 12 meses por marca</div>
+          <div class="ci-detail">Ventas, KPIs, tendencias estacionales, meses de mayor y menor desempeño</div>
+          <span class="ci-tag tag-fin">FIN</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Leer manuales de operaciones y guías de marca de cada una de las 4 marcas</div>
+          <div class="ci-detail">Estándares de VM, protocolos de apertura/cierre, política de devoluciones, etc.</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Participar en al menos una apertura y un cierre de tienda de cada marca</div>
+          <div class="ci-detail">Entiende los rituales operativos de inicio y fin del día de manera práctica</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Conocer el proceso completo de recepción de mercancía</div>
+          <div class="ci-detail">Desde el arribo del proveedor hasta el ingreso al sistema y salida a piso</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Presentar a la Dirección el informe de observaciones de los primeros 30 días</div>
+          <div class="ci-detail">¿Qué encontraste? ¿Qué oportunidades detectas? Preliminary findings sin compromisos aún</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 2 -->
+    <div class="checklist-phase">
+      <div class="checklist-phase-title cp-2">🟡 Fase 2: Integrarse & Proponer — Días 31 al 60</div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Asumir la conducción de las reuniones semanales de operaciones</div>
+          <div class="ci-detail">Establece el ritmo, el formato y los compromisos de seguimiento</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Diseñar o actualizar el dashboard de seguimiento semanal de KPIs</div>
+          <div class="ci-detail">Asegura que tengas visibilidad de ventas, tráfico, conversión y merma de todas las marcas</div>
+          <span class="ci-tag tag-fin">FIN</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Realizar la primera ronda de auditorías operativas formales por tienda</div>
+          <div class="ci-detail">Con checklist oficial: VM, inventario, limpieza, personal, caja, estándares de marca</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Identificar y documentar las 3 principales oportunidades de mejora operativa</div>
+          <div class="ci-detail">Prioriza por impacto en ventas o en experiencia del cliente. Preséntalo con datos.</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Implementar un plan de mejora en al menos una tienda piloto</div>
+          <div class="ci-detail">Elige la tienda con mayor potencial de mejora rápida (quick win) para demostrar impacto</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Establecer objetivos individuales con cada gerente de tienda</div>
+          <div class="ci-detail">KPIs claros, metas mensuales, criterios de éxito y plan de seguimiento</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Conocer la planificación de campañas y temporadas de cada marca</div>
+          <div class="ci-detail">Calendarios de colecciones, campañas de marketing y periodos pico de ventas</div>
+          <span class="ci-tag tag-mkt">MKT</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Revisar y validar el proceso de gestión de merma en todas las tiendas</div>
+          <div class="ci-detail">Entiende los índices actuales, causas principales y acciones en curso</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Participar en el proceso de selección de al menos un nuevo colaborador</div>
+          <div class="ci-detail">Entiende los perfiles de tienda, el proceso de selección y los criterios de ingreso</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Proponer e iniciar al menos un proyecto de mejora transversal</div>
+          <div class="ci-detail">Un proceso, herramienta o práctica que impacte positivamente a 2 o más marcas</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Presentar informe de avance al día 60 con métricas y plan para fase 3</div>
+          <div class="ci-detail">¿Qué implementaste? ¿Qué impacto tuvo? ¿Qué viene en los próximos 30 días?</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 3 -->
+    <div class="checklist-phase">
+      <div class="checklist-phase-title cp-3">🟢 Fase 3: Liderar & Ejecutar — Días 61 al 90</div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Diseñar el plan estratégico de operaciones para los próximos 6 meses</div>
+          <div class="ci-detail">Incluye metas por marca, proyectos de mejora, inversiones requeridas y cronograma</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Implementar el sistema de seguimiento mensual de KPIs para toda la red de tiendas</div>
+          <div class="ci-detail">Reportes estándar, ritmo de reuniones, formato de presentación a dirección</div>
+          <span class="ci-tag tag-fin">FIN</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Liderar el proceso de planificación de la próxima temporada (colecciones / campañas)</div>
+          <div class="ci-detail">Coordina con marcas, marketing y finanzas para asegurar la ejecución operativa</div>
+          <span class="ci-tag tag-mkt">MKT</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Completar las evaluaciones de desempeño de los gerentes de tienda</div>
+          <div class="ci-detail">Feedback formal, reconocimiento de logros y planes de desarrollo para cada gerente</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Presentar resultados del piloto de mejora y plan de escalamiento</div>
+          <div class="ci-detail">¿Qué funcionó? ¿Qué impacto en ventas/operación? ¿Cómo replicarlo a más tiendas?</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Establecer alianza de trabajo efectiva con las áreas de soporte (RRHH, Finanzas, IT)</div>
+          <div class="ci-detail">Acuerda ritmos de trabajo, entregables mutuos y canales de comunicación preferidos</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Documentar los procesos operativos clave que mejorasteé o estandarizaste</div>
+          <div class="ci-detail">Crea o actualiza manuales, SOPs o guías para que queden como activos del equipo</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Liderar un recorrido de auditoría completo e independiente por todas las tiendas</div>
+          <div class="ci-detail">Con formato propio, criterios definidos y plan de acción para cada punto</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Definir objetivos anuales para el equipo bajo tu cargo</div>
+          <div class="ci-detail">OKRs o metas SMART alineadas con los objetivos de negocio del grupo</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">Proponer el presupuesto de operaciones para el siguiente período</div>
+          <div class="ci-detail">Gastos operativos, inversiones en mejora, recursos humanos y proyectos especiales</div>
+          <span class="ci-tag tag-fin">FIN</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check">✓</span></div>
+        <div class="ci-content">
+          <div class="ci-text">🎉 Presentación formal de cierre de on-boarding — Día 90</div>
+          <div class="ci-detail">Comparte tus aprendizajes, logros del período, diagnóstico completo y visión para el siguiente semestre. Este es tu momento.</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<div class="footer">
+  <strong>Dada Group</strong> · Sistema de On-Boarding – Gerente de Operaciones Retail · Plan 90 días<br>
+  <span style="font-size:11px; margin-top:4px; display:block;">LC Waikiki · Ardene · Cotton On · Lufian</span>
+</div>
+
+<script>
+  // ── NAV ──
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const btns = document.querySelectorAll('.nav-btn');
+    btns.forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── CHECKLIST ──
+  const STORAGE_KEY = 'dada_onboarding_checks';
+
+  function getChecks() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+  }
+
+  function saveChecks(checks) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(checks)); } catch {}
+  }
+
+  function getItemId(el) {
+    const txt = el.querySelector('.ci-text').textContent.trim();
+    return btoa(unescape(encodeURIComponent(txt))).replace(/[^a-zA-Z0-9]/g,'').substring(0,32);
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    const checks = getChecks();
+    const id = getItemId(el);
+    if (el.classList.contains('checked')) { checks[id] = true; } else { delete checks[id]; }
+    saveChecks(checks);
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('.checklist-item');
+    const checked = document.querySelectorAll('.checklist-item.checked');
+    const total = items.length;
+    const done = checked.length;
+    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+    document.getElementById('pct').textContent = pct + '%';
+    document.getElementById('pbar').style.width = pct + '%';
+    document.getElementById('plabel').textContent = done + ' de ' + total + ' tareas completadas';
+  }
+
+  function restoreChecks() {
+    const checks = getChecks();
+    document.querySelectorAll('.checklist-item').forEach(el => {
+      const id = getItemId(el);
+      if (checks[id]) el.classList.add('checked');
+    });
+    updateProgress();
+  }
+
+  // ── INIT ──
+  window.addEventListener('DOMContentLoaded', () => {
+    restoreChecks();
+  });
+</script>
+</body>
+</html>
