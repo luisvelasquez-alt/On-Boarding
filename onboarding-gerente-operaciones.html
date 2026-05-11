@@ -25,6 +25,64 @@
     --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
   }
 
+  /* ── LOGIN ── */
+  #login-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 60%, #1a1a2e 100%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .login-box {
+    background: white; border-radius: 20px; padding: 48px 40px;
+    width: 100%; max-width: 420px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    text-align: center;
+    position: relative;
+  }
+  .login-box::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    border-radius: 20px 20px 0 0;
+  }
+  .login-logo { font-size: 2.5rem; margin-bottom: 12px; }
+  .login-brand { font-size: 1.6rem; font-weight: 900; color: var(--primary); margin-bottom: 4px; }
+  .login-subtitle { font-size: 13px; color: var(--text-light); margin-bottom: 36px; line-height: 1.5; }
+  .login-label { font-size: 12px; font-weight: 700; color: var(--text); text-align: left;
+    display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .login-field {
+    width: 100%; padding: 13px 16px; border: 2px solid var(--border); border-radius: 10px;
+    font-size: 14px; margin-bottom: 20px; transition: border-color 0.2s;
+    font-family: inherit; color: var(--text); background: #fafafa;
+  }
+  .login-field:focus { outline: none; border-color: var(--accent); background: white; }
+  .login-btn {
+    width: 100%; padding: 15px; background: var(--accent); color: white; border: none;
+    border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s; margin-top: 4px;
+  }
+  .login-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+  .login-btn:active { transform: translateY(0); }
+  .login-error {
+    color: #e53e3e; font-size: 13px; margin-top: 12px;
+    display: none; background: #fff5f5; padding: 10px; border-radius: 8px;
+  }
+
+  /* ── NAV USER BADGE ── */
+  .nav-user-badge {
+    display: flex; align-items: center; gap: 8px;
+    margin-left: auto; padding: 0 4px; flex-shrink: 0;
+  }
+  .nav-user-name {
+    font-size: 12px; color: var(--text-light); font-weight: 600;
+    white-space: nowrap; max-width: 160px; overflow: hidden; text-overflow: ellipsis;
+  }
+  .logout-btn {
+    background: none; border: 1.5px solid var(--border); border-radius: 6px;
+    padding: 5px 10px; font-size: 11px; cursor: pointer; color: var(--text-light);
+    font-family: inherit; transition: all 0.2s; white-space: nowrap;
+  }
+  .logout-btn:hover { background: #fff0f3; border-color: var(--accent); color: var(--accent); }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -376,6 +434,28 @@
 </head>
 <body>
 
+<!-- ═══════════════════════════ LOGIN ═══════════════════════════ -->
+<div id="login-overlay">
+  <div class="login-box">
+    <div class="login-logo">🏢</div>
+    <div class="login-brand">Dada Group</div>
+    <div class="login-subtitle">Dashboard de On-Boarding Dada Group<br>Ingresa tus credenciales para continuar</div>
+
+    <label class="login-label" for="login-position">Tu posición</label>
+    <select id="login-position" class="login-field">
+      <option value="">— Selecciona tu posición —</option>
+      <option value="gerente_ops">Gerente de Operaciones Retail</option>
+    </select>
+
+    <label class="login-label" for="login-password">Contraseña</label>
+    <input type="password" id="login-password" class="login-field"
+           placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
+
+    <button class="login-btn" onclick="doLogin()">Ingresar al On-Boarding</button>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
 <div class="hero">
   <div class="hero-badge">🚀 On-Boarding Oficial</div>
@@ -406,6 +486,10 @@
     <button class="nav-btn" onclick="showSection('herramientas')"><span class="nav-icon">🛠️</span>Herramientas</button>
     <button class="nav-btn" onclick="showSection('recursos')"><span class="nav-icon">📚</span>Recursos & Dashboards</button>
     <button class="nav-btn" onclick="showSection('checklist')"><span class="nav-icon">✅</span>Checklist</button>
+    <div class="nav-user-badge">
+      <span class="nav-user-name" id="nav-user-name"></span>
+      <button class="logout-btn" onclick="doLogout()">Cerrar sesión</button>
+    </div>
   </nav>
 </div>
 
@@ -1793,7 +1877,7 @@
         <div class="ci-box"><span class="ci-check">✓</span></div>
         <div class="ci-content">
           <div class="ci-text">Preparar y presentar Workshop con Retail Managers</div>
-          <div class="ci-detail">Diseñar y facilitar un workshop con los gerentes de tienda: alineación de estándares operativos, mejores prácticas y compromisos de equipo</div>
+          <div class="ci-detail">Diseñar y facilitar un workshop con los gerentes de retail: alineación de estándares operativos, mejores prácticas y compromisos de equipo</div>
           <span class="ci-tag tag-ops">OPS</span>
         </div>
       </div>
@@ -1903,27 +1987,78 @@
 </div>
 
 <script>
+  // ── LOGIN ──
+  const PASSWORD = 'dada2026';
+  const SESSION_KEY = 'dada_onboarding_session';
+
+  const POSITION_LABELS = {
+    gerente_ops:    'Gerente de Operaciones',
+    dir_general:    'Director General',
+    gerente_lcw:    'Gerente · LC Waikiki',
+    gerente_ardene: 'Gerente · Ardene',
+    gerente_cotton: 'Gerente · Cotton On',
+    gerente_lufian: 'Gerente · Lufian',
+    rrhh:           'Gerente RRHH',
+    finanzas:       'Gerente Finanzas'
+  };
+
+  function getSession() {
+    try { return JSON.parse(localStorage.getItem(SESSION_KEY)); } catch { return null; }
+  }
+
+  function storageKey() {
+    const s = getSession();
+    return 'dada_checks_' + (s ? s.position : 'guest');
+  }
+
+  function doLogin() {
+    const position = document.getElementById('login-position').value;
+    const password = document.getElementById('login-password').value;
+    const errEl = document.getElementById('login-error');
+    errEl.style.display = 'none';
+
+    if (!position) {
+      errEl.textContent = 'Por favor selecciona tu posición.';
+      errEl.style.display = 'block'; return;
+    }
+    if (password !== PASSWORD) {
+      errEl.textContent = 'Contraseña incorrecta. Intenta de nuevo.';
+      errEl.style.display = 'block';
+      document.getElementById('login-password').value = ''; return;
+    }
+
+    localStorage.setItem(SESSION_KEY, JSON.stringify({ position }));
+    document.getElementById('login-overlay').style.display = 'none';
+    initApp();
+  }
+
+  function doLogout() {
+    localStorage.removeItem(SESSION_KEY);
+    document.querySelectorAll('.checklist-item').forEach(el => el.classList.remove('checked'));
+    document.getElementById('login-password').value = '';
+    document.getElementById('login-position').value = '';
+    document.getElementById('login-error').style.display = 'none';
+    document.getElementById('login-overlay').style.display = 'flex';
+  }
+
   // ── NAV ──
   function showSection(id) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    const btns = document.querySelectorAll('.nav-btn');
-    btns.forEach(b => {
+    document.querySelectorAll('.nav-btn').forEach(b => {
       if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active');
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // ── CHECKLIST ──
-  const STORAGE_KEY = 'dada_onboarding_checks';
-
   function getChecks() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+    try { return JSON.parse(localStorage.getItem(storageKey()) || '{}'); } catch { return {}; }
   }
 
   function saveChecks(checks) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(checks)); } catch {}
+    try { localStorage.setItem(storageKey(), JSON.stringify(checks)); } catch {}
   }
 
   function getItemId(el) {
@@ -1955,14 +2090,26 @@
     const checks = getChecks();
     document.querySelectorAll('.checklist-item').forEach(el => {
       const id = getItemId(el);
-      if (checks[id]) el.classList.add('checked');
+      el.classList.toggle('checked', !!checks[id]);
     });
     updateProgress();
   }
 
   // ── INIT ──
-  window.addEventListener('DOMContentLoaded', () => {
+  function initApp() {
+    const session = getSession();
+    if (!session) return;
+    const label = POSITION_LABELS[session.position] || session.position;
+    document.getElementById('nav-user-name').textContent = '👤 ' + label;
     restoreChecks();
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const session = getSession();
+    if (session) {
+      document.getElementById('login-overlay').style.display = 'none';
+      initApp();
+    }
   });
 </script>
 </body>
