@@ -440,16 +440,17 @@
     <div class="login-brand">Dada Group</div>
     <div class="login-subtitle">Dashboard de On-Boarding Dada Group<br>Ingresa tus credenciales para continuar</div>
 
-    <label class="login-label" for="login-position">Tu posición</label>
-    <select id="login-position" class="login-field">
-      <option value="gerente_ops" selected>Gerente de Operaciones Retail</option>
+    <label class="login-label" for="login-user">Usuario</label>
+    <select id="login-user" class="login-field">
+      <option value="onboarding" selected>Persona en onboarding</option>
+      <option value="luis">Luis Velasquez</option>
     </select>
 
     <label class="login-label" for="login-password">Contraseña</label>
     <input type="password" id="login-password" class="login-field"
            placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
 
-    <button class="login-btn" onclick="doLogin()">Ingresar al On-Boarding</button>
+    <button class="login-btn" id="login-button" onclick="doLogin()">Ingresar al On-Boarding</button>
     <div class="login-error" id="login-error"></div>
   </div>
 </div>
@@ -1898,18 +1899,20 @@
 
 <script>
   // ── LOGIN ──
-  const PASSWORD = 'dada2026';
+  const GOOGLE_SHEETS_API_URL = '';
   const SESSION_KEY = 'dada_onboarding_session';
 
-  const POSITION_LABELS = {
-    gerente_ops:    'Gerente de Operaciones',
-    dir_general:    'Director General',
-    gerente_lcw:    'Gerente · LC Waikiki',
-    gerente_ardene: 'Gerente · Ardene',
-    gerente_cotton: 'Gerente · Cotton On',
-    gerente_lufian: 'Gerente · Lufian',
-    rrhh:           'Gerente RRHH',
-    finanzas:       'Gerente Finanzas'
+  const LOCAL_USERS = {
+    onboarding: {
+      nombre: 'Persona en onboarding',
+      rol: 'Gerente de Operaciones Retail',
+      pin: 'onboarding2026'
+    },
+    luis: {
+      nombre: 'Luis Velasquez',
+      rol: 'Administrador',
+      pin: 'dada2026'
+    }
   };
 
   function getSession() {
@@ -1918,35 +1921,83 @@
 
   function storageKey() {
     const s = getSession();
-    return 'dada_checks_' + (s ? s.position : 'guest');
+    return 'dada_checks_' + (s ? (s.user_id || s.position) : 'guest');
   }
 
-  function doLogin() {
-    const position = document.getElementById('login-position').value;
-    const password = document.getElementById('login-password').value;
+  function apiEnabled() {
+    return GOOGLE_SHEETS_API_URL.trim().startsWith('http');
+  }
+
+  async function apiRequest(payload) {
+    const response = await fetch(GOOGLE_SHEETS_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json();
+    if (!data.ok) throw new Error(data.error || 'No se pudo conectar con Google Sheets.');
+    return data;
+  }
+
+  function setLoginError(message) {
     const errEl = document.getElementById('login-error');
-    errEl.style.display = 'none';
+    errEl.textContent = message;
+    errEl.style.display = 'block';
+  }
 
-    if (!position) {
-      errEl.textContent = 'Por favor selecciona tu posición.';
-      errEl.style.display = 'block'; return;
-    }
-    if (password !== PASSWORD) {
-      errEl.textContent = 'Contraseña incorrecta. Intenta de nuevo.';
-      errEl.style.display = 'block';
-      document.getElementById('login-password').value = ''; return;
+  async function doLogin() {
+    const userId = document.getElementById('login-user').value;
+    const password = document.getElementById('login-password').value;
+    const button = document.getElementById('login-button');
+    document.getElementById('login-error').style.display = 'none';
+
+    if (!userId) {
+      setLoginError('Por favor selecciona un usuario.');
+      return;
     }
 
-    localStorage.setItem(SESSION_KEY, JSON.stringify({ position }));
-    document.getElementById('login-overlay').style.display = 'none';
-    initApp();
+    button.disabled = true;
+    button.textContent = 'Ingresando...';
+
+    try {
+      if (apiEnabled()) {
+        const data = await apiRequest({ action: 'login', user_id: userId, pin: password });
+        localStorage.setItem(SESSION_KEY, JSON.stringify({
+          user_id: data.user.user_id,
+          nombre: data.user.nombre,
+          rol: data.user.rol,
+          remote: true
+        }));
+        document.getElementById('login-overlay').style.display = 'none';
+        applyProgressMap(data.progress || {});
+      } else {
+        const user = LOCAL_USERS[userId];
+        if (!user || user.pin !== password) {
+          throw new Error('Usuario o clave incorrecta.');
+        }
+        localStorage.setItem(SESSION_KEY, JSON.stringify({
+          user_id: userId,
+          nombre: user.nombre,
+          rol: user.rol,
+          remote: false
+        }));
+        document.getElementById('login-overlay').style.display = 'none';
+        initApp();
+      }
+    } catch (error) {
+      setLoginError(error.message || 'No se pudo iniciar sesión.');
+      document.getElementById('login-password').value = '';
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Ingresar al On-Boarding';
+    }
   }
 
   function doLogout() {
     localStorage.removeItem(SESSION_KEY);
     document.querySelectorAll('.checklist-item').forEach(el =>el.classList.remove('checked'));
     document.getElementById('login-password').value = '';
-    document.getElementById('login-position').value = '';
+    document.getElementById('login-user').value = 'onboarding';
     document.getElementById('login-error').style.display = 'none';
     document.getElementById('login-overlay').style.display = 'flex';
   }
@@ -1976,13 +2027,50 @@
     return btoa(unescape(encodeURIComponent(txt))).replace(/[^a-zA-Z0-9]/g,'').substring(0,32);
   }
 
+  function applyProgressMap(checks) {
+    document.querySelectorAll('.checklist-item').forEach(el =>{
+      const id = getItemId(el);
+      el.classList.toggle('checked', !!checks[id]);
+    });
+    saveChecks(checks);
+    updateProgress();
+  }
+
+  async function syncRemoteProgress() {
+    const session = getSession();
+    if (!session || !session.remote || !apiEnabled()) {
+      restoreChecks();
+      return;
+    }
+
+    try {
+      const data = await apiRequest({ action: 'getProgress', user_id: session.user_id });
+      applyProgressMap(data.progress || {});
+    } catch (error) {
+      console.warn('No se pudo cargar Google Sheets. Usando progreso local.', error);
+      restoreChecks();
+    }
+  }
+
   function toggleCheck(el) {
     el.classList.toggle('checked');
     const checks = getChecks();
     const id = getItemId(el);
-    if (el.classList.contains('checked')) { checks[id] = true; } else { delete checks[id]; }
+    const completed = el.classList.contains('checked');
+    if (completed) { checks[id] = true; } else { delete checks[id]; }
     saveChecks(checks);
     updateProgress();
+
+    const session = getSession();
+    if (session && session.remote && apiEnabled()) {
+      apiRequest({
+        action: 'saveProgress',
+        user_id: session.user_id,
+        item_id: id,
+        completed,
+        source: 'dashboard'
+      }).catch(error => console.warn('No se pudo guardar en Google Sheets.', error));
+    }
   }
 
   function updateProgress() {
@@ -2006,19 +2094,19 @@
   }
 
   // ── INIT ──
-  function initApp() {
+  async function initApp() {
     const session = getSession();
     if (!session) return;
-    const label = POSITION_LABELS[session.position] || session.position;
+    const label = session.nombre || session.rol || session.user_id || session.position;
     document.getElementById('nav-user-name').textContent = label;
-    restoreChecks();
+    await syncRemoteProgress();
   }
 
-  window.addEventListener('DOMContentLoaded', () =>{
+  window.addEventListener('DOMContentLoaded', async () =>{
     const session = getSession();
     if (session) {
       document.getElementById('login-overlay').style.display = 'none';
-      initApp();
+      await initApp();
     }
   });
 </script>
