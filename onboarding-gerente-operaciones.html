@@ -1899,7 +1899,7 @@
 
 <script>
   // ── LOGIN ──
-  const GOOGLE_SHEETS_API_URL = 'https://script.google.com/a/macros/grupodavid.com/s/AKfycbyn28htUt1nh8fnXpEog3_n1Obwl98eTaiJE9wzIUINo5h0oB6r72MeToKJN9A8yH7-Xw/exec';
+  const GOOGLE_SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbyn28htUt1nh8fnXpEog3_n1Obwl98eTaiJE9wzIUINo5h0oB6r72MeToKJN9A8yH7-Xw/exec';
   const SESSION_KEY = 'dada_onboarding_session';
 
   const LOCAL_USERS = {
@@ -1929,11 +1929,19 @@
   }
 
   async function apiRequest(payload) {
-    const response = await fetch(GOOGLE_SHEETS_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload)
-    });
+    let response;
+    try {
+      response = await fetch(GOOGLE_SHEETS_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+    } catch (error) {
+      throw new Error('No se pudo conectar con Google Sheets. Revisa que el Apps Script este desplegado con acceso publico.');
+    }
+    if (!response.ok) {
+      throw new Error('Google Sheets no respondio correctamente. Revisa el despliegue del Apps Script.');
+    }
     const data = await response.json();
     if (!data.ok) throw new Error(data.error || 'No se pudo conectar con Google Sheets.');
     return data;
