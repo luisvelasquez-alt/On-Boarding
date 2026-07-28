@@ -40,3 +40,30 @@ Mientras esa fila no exista, el login remoto devolverá "Usuario o clave incorre
 ese usuario. El fallback local (`LOCAL_USERS` en el HTML, usado solo si `GOOGLE_SHEETS_API_URL`
 está deshabilitada) ya incluye un PIN de prueba (`Merchdada2026`) que conviene rotar o alinear
 con el PIN real que se registre en la hoja.
+
+## Panel "Progreso del Equipo" (rol Administrador)
+
+`onboarding-progress.gs` ahora expone dos acciones nuevas: `listUsers` y `getUserProgress`,
+que permiten a cualquier usuario cuyo `rol` contenga la palabra "Administrador" consultar
+desde el propio dashboard el avance de checklist de cualquier otro usuario activo (sin
+necesidad de abrir la hoja de cálculo).
+
+**Este archivo por sí solo no actualiza el Web App ya desplegado.** Google Apps Script
+sirve el código que se pegó manualmente en el editor la última vez. Para que el panel
+funcione en producción:
+
+1. Abre la hoja de Google Sheets → Extensions > Apps Script.
+2. Reemplaza el contenido por el de este `onboarding-progress.gs` actualizado.
+3. Deploy > Manage deployments > icono de lápiz sobre el deployment existente (el que
+   genera la URL ya usada en `GOOGLE_SHEETS_API_URL`) > Version: **New version** > Deploy.
+   Importante: usar "New version" del mismo deployment, no crear uno nuevo, para no
+   cambiar la URL que ya está publicada en el dashboard.
+
+Nota de seguridad: al igual que el resto de esta API (`getProgress`/`saveProgress` ya
+aceptan cualquier `user_id` sin verificar contraseña), `listUsers`/`getUserProgress` solo
+validan que el `requester_id` enviado tenga rol Administrador en la hoja — no verifican
+contraseña en cada llamada. Es el mismo nivel de confianza que ya tenía el resto del
+sistema (cualquiera con la URL del Web App podría, en teoría, forjar un `requester_id`
+desde la consola del navegador). No es una regresión introducida por este cambio, pero
+si en algún momento se requiere un nivel de seguridad mayor, este API necesitaría
+autenticación real (tokens de sesión) en vez de confiar en el user_id que envía el cliente.

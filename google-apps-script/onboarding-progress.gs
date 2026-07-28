@@ -25,6 +25,10 @@ function handleAction(payload) {
     case 'saveProgress':
       saveProgress(payload.user_id, payload.item_id, payload.completed, payload.source);
       return { progress: getProgress(payload.user_id) };
+    case 'listUsers':
+      return { users: listUsersForAdmin(payload.requester_id) };
+    case 'getUserProgress':
+      return { progress: getUserProgressForAdmin(payload.requester_id, payload.target_user_id) };
     default:
       throw new Error('Accion no soportada.');
   }
@@ -46,6 +50,32 @@ function loginUser(userId, pin) {
     },
     progress: getProgress(user.user_id)
   };
+}
+
+function isAdminRol(rol) {
+  return String(rol || '').toLowerCase().indexOf('administrador') !== -1;
+}
+
+function requireAdmin(requesterId) {
+  const users = readSheetObjects(USERS_SHEET);
+  const requester = users.find(row => row.user_id === requesterId && isActive(row.activo));
+  if (!requester || !isAdminRol(requester.rol)) {
+    throw new Error('No autorizado.');
+  }
+}
+
+function listUsersForAdmin(requesterId) {
+  requireAdmin(requesterId);
+  const users = readSheetObjects(USERS_SHEET);
+  return users
+    .filter(row => isActive(row.activo))
+    .map(row => ({ user_id: row.user_id, nombre: row.nombre, rol: row.rol }));
+}
+
+function getUserProgressForAdmin(requesterId, targetUserId) {
+  requireAdmin(requesterId);
+  if (!targetUserId) throw new Error('Falta el usuario a consultar.');
+  return getProgress(targetUserId);
 }
 
 function getProgress(userId) {

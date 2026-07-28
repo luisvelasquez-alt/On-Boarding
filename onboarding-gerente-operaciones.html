@@ -487,6 +487,7 @@
     <button class="nav-btn" onclick="showSection('herramientas')">Herramientas</button>
     <button class="nav-btn" onclick="showSection('recursos')">Recursos y Dashboards</button>
     <button class="nav-btn" onclick="showSection('checklist')">Checklist</button>
+    <button class="nav-btn" id="nav-btn-team" style="display:none;" onclick="showSection('team')">Progreso del Equipo</button>
     <div class="nav-user-badge">
       <span class="nav-user-name" id="nav-user-name"></span>
       <button class="logout-btn" onclick="doLogout()">Cerrar sesión</button>
@@ -2254,6 +2255,26 @@
   </div>
 </div>
 
+<!-- ═══════════════════════════ PROGRESO DEL EQUIPO (ADMIN) ═══════════════════════════ -->
+<div id="team" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Progreso del Equipo</h2>
+      <p>Consulta el avance de on-boarding de cualquier usuario activo</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Seleccionar persona</div>
+      <div class="card-subtitle">Elige a quién quieres consultar</div>
+      <select id="team-user-select" class="login-field" style="margin-bottom:0; max-width:360px;" onchange="loadTeamProgress(this.value)">
+        <option value="">Selecciona una persona…</option>
+      </select>
+    </div>
+
+    <div id="team-results"></div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
 <div class="footer">
   <strong>Dada Group</strong> · Sistema de On-Boarding · Plan 90 días<br>
@@ -2290,6 +2311,16 @@
   // ── ROLES ──
   function getRoleCode(rol) {
     return (rol || '').toLowerCase().includes('merchant') ? 'merchant-jr' : 'ops';
+  }
+
+  function isAdminRole(rol) {
+    return (rol || '').toLowerCase().includes('administrador');
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str == null ? '' : String(str);
+    return div.innerHTML;
   }
 
   function applyRoleContent(role) {
@@ -2373,6 +2404,7 @@
         document.getElementById('login-overlay').style.display = 'none';
         document.getElementById('nav-user-name').textContent = data.user.nombre || data.user.rol || data.user.user_id;
         applyRoleContent(getRoleCode(data.user.rol));
+        await initTeamPanel(data.user);
         applyProgressMap(data.progress || {});
       } else {
         const user = LOCAL_USERS[userId];
@@ -2497,6 +2529,94 @@
     updateProgress();
   }
 
+  // ── ADMIN: PROGRESO DEL EQUIPO ──
+  async function initTeamPanel(session) {
+    const navBtn = document.getElementById('nav-btn-team');
+    if (!navBtn) return;
+    if (!session || !isAdminRole(session.rol) || !apiEnabled()) {
+      navBtn.style.display = 'none';
+      return;
+    }
+    navBtn.style.display = '';
+    try {
+      const data = await apiRequest({ action: 'listUsers', requester_id: session.user_id });
+      const select = document.getElementById('team-user-select');
+      select.innerHTML = '<option value="">Selecciona una persona…</option>';
+      (data.users || [])
+        .filter(u => u.user_id !== session.user_id)
+        .forEach(u => {
+          const opt = document.createElement('option');
+          opt.value = u.user_id;
+          opt.textContent = (u.nombre || u.user_id) + ' — ' + (u.rol || '');
+          opt.dataset.rol = u.rol || '';
+          select.appendChild(opt);
+        });
+    } catch (error) {
+      console.warn('No se pudo cargar la lista de usuarios.', error);
+    }
+  }
+
+  async function loadTeamProgress(userId) {
+    const resultsEl = document.getElementById('team-results');
+    if (!userId) { resultsEl.innerHTML = ''; return; }
+
+    const select = document.getElementById('team-user-select');
+    const opt = select.selectedOptions[0];
+    const targetRole = getRoleCode(opt ? opt.dataset.rol : '');
+    const session = getSession();
+
+    resultsEl.innerHTML = '<div class="card"><div class="card-subtitle">Cargando…</div></div>';
+    try {
+      const data = await apiRequest({ action: 'getUserProgress', requester_id: session.user_id, target_user_id: userId });
+      renderTeamProgress(opt.textContent, targetRole, data.progress || {});
+    } catch (error) {
+      resultsEl.innerHTML = '<div class="card"><div class="card-subtitle">No se pudo cargar el progreso: ' + escapeHtml(error.message || error) + '</div></div>';
+    }
+  }
+
+  function renderTeamProgress(label, role, progress) {
+    const phaseEls = document.querySelectorAll('.checklist-phase[data-role="' + role + '"]');
+    let totalDone = 0, totalItems = 0;
+
+    const phaseBlocks = Array.from(phaseEls).map(phaseEl => {
+      const title = phaseEl.querySelector('.checklist-phase-title').textContent;
+      const items = Array.from(phaseEl.querySelectorAll('.checklist-item'));
+      const pending = [];
+      let done = 0;
+      items.forEach(item => {
+        const id = getItemId(item);
+        if (progress[id]) { done++; } else { pending.push(item.querySelector('.ci-text').textContent.trim()); }
+      });
+      totalDone += done;
+      totalItems += items.length;
+      return { title, done, total: items.length, pending };
+    });
+
+    const pct = totalItems > 0 ? Math.round((totalDone / totalItems) * 100) : 0;
+
+    let html = '<div class="card progress-section">' +
+      '<div class="progress-header"><div><div class="card-title">' + escapeHtml(label) + '</div>' +
+      '<div class="card-subtitle">Avance general de on-boarding</div></div>' +
+      '<div class="progress-pct">' + pct + '%</div></div>' +
+      '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
+      '<div class="progress-label">' + totalDone + ' de ' + totalItems + ' tareas completadas</div>' +
+      '</div>';
+
+    phaseBlocks.forEach(block => {
+      html += '<div class="card"><div class="card-title">' + escapeHtml(block.title) + '</div>' +
+        '<div class="card-subtitle">' + block.done + ' de ' + block.total + ' completadas</div>';
+      if (block.pending.length) {
+        html += '<div style="margin-top:10px; font-size:12px; color:var(--text-light);"><strong>Pendientes:</strong>' +
+          '<ul style="margin:6px 0 0 18px; padding:0;">' +
+          block.pending.map(p => '<li style="margin-bottom:4px;">' + escapeHtml(p) + '</li>').join('') +
+          '</ul></div>';
+      }
+      html += '</div>';
+    });
+
+    document.getElementById('team-results').innerHTML = html;
+  }
+
   // ── INIT ──
   async function initApp() {
     const session = getSession();
@@ -2504,6 +2624,7 @@
     const label = session.nombre || session.rol || session.user_id || session.position;
     document.getElementById('nav-user-name').textContent = label;
     applyRoleContent(getRoleCode(session.rol));
+    await initTeamPanel(session);
     await syncRemoteProgress();
   }
 
