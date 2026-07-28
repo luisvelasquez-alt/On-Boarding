@@ -18,7 +18,7 @@ Para activar guardado en Google Sheets:
 5. Ejecutar como: tu usuario.
 6. Acceso: Anyone.
 7. Copia la URL del Web App.
-8. En `onboarding-gerente-operaciones.html`, pega esa URL en `GOOGLE_SHEETS_API_URL`.
+8. En `index.html`, pega esa URL en `GOOGLE_SHEETS_API_URL`.
 9. Publica de nuevo el dashboard.
 
 La pestana `Users` controla usuarios y claves. La pestana `Progress` guarda cada actividad marcada por usuario.
@@ -32,7 +32,7 @@ la fila del usuario en la pestana `Users`:
 - `user_id`: `merchant-jr`
 - `nombre`: nombre de la persona
 - `rol`: debe contener la palabra "Merchant" (por ejemplo `Merchant Junior`) — el dashboard
-  detecta el rol por esa palabra clave en `onboarding-gerente-operaciones.html`.
+  detecta el rol por esa palabra clave en `index.html`.
 - `pin`: la clave que se le entregue a la persona
 - `activo`: `TRUE`
 
