@@ -532,9 +532,11 @@
       </div>
       <div class="phase-card phase-3" onclick="showSection('checklist')">
         <div class="phase-label">Fase 3</div>
-        <div class="phase-title">Liderar y Ejecutar</div>
+        <div class="phase-title" data-role="ops">Liderar y Ejecutar</div>
+        <div class="phase-title" data-role="merchant-jr">Ejecutar y Consolidar</div>
         <div class="phase-days">Días 61 – 90</div>
-        <div class="phase-desc">Opera con autonomía, implementa tu plan de mejora y define objetivos propios.</div>
+        <div class="phase-desc" data-role="ops">Opera con autonomía, implementa tu plan de mejora y define objetivos propios.</div>
+        <div class="phase-desc" data-role="merchant-jr">Ejecuta tus análisis con autonomía, consolida tus reportes y cierra tu on-boarding.</div>
         <div class="phase-tasks-count"><span id="phase-count-3">11</span> actividades clave</div>
       </div>
     </div>
@@ -1529,10 +1531,6 @@
     </div>
 
     <div class="tools-grid" data-role="merchant-jr">
-      <div class="tool-card">        <div class="tool-name">ICG (Sistema Central)</div>
-        <div class="tool-cat cat-ops">Operaciones</div>
-        <div class="tool-desc">Sistema principal de inventario y ventas del grupo. Consulta de stock y ventas por tienda como base para tus análisis de producto y precios.</div>
-      </div>
       <div class="tool-card">        <div class="tool-name">Retail Store (LCW)</div>
         <div class="tool-cat cat-retail">Retail – LC Waikiki</div>
         <div class="tool-desc">Sistema específico de LC Waikiki para gestión de tiendas (RS). Referencia útil para entender el contexto de las llamadas Gemba con la marca.</div>
@@ -1739,7 +1737,7 @@
     </div>
 
     <!-- Manuales disponibles -->
-    <div class="card">
+    <div class="card" data-role="ops">
       <div class="card-title">Manuales Operativos Disponibles en tu Carpeta</div>
       <div class="card-subtitle">Documentos de referencia que debes leer en tu primera semana</div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
@@ -1778,7 +1776,45 @@
       </div>
     </div>
 
-    <div class="tip-box">
+    <!-- Manuales disponibles – Merchant Junior -->
+    <div class="card" data-role="merchant-jr">
+      <div class="card-title">Manuales Operativos Disponibles en tu Carpeta</div>
+      <div class="card-subtitle">Documentos de referencia que debes leer en tu primera semana</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
+
+        <div style="border-left:4px solid var(--lc-color); background:#eff6ff; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--lc-color); margin-bottom:6px;">LC Waikiki</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • <a href="https://drive.google.com/file/d/1CMGJxaIRV4dlOU3-ibShxUZjbHQhiFWE/view?usp=share_link" target="_blank">Manual Operativo Tienda LCW (completo)</a><br>
+            • <a href="https://drive.google.com/file/d/1-fWor3saMgyuxW1Qg62NPEb2V8AX3z87/view?usp=share_link" target="_blank">Mobile Info – Stock Tracking</a><br>
+            • <a href="https://drive.google.com/drive/folders/1__p8gYE-YzhJh4Gehqt_S3eOK6tKxkPN?usp=share_link" target="_blank">Videos explicativos – Recepción de producto</a>
+          </div>
+        </div>
+
+        <div style="border-left:4px solid var(--ardene-color); background:#fff0f7; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--ardene-color); margin-bottom:6px;">Ardene</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • <a href="https://sites.google.com/grupodavid.com/ardenehub/producto" target="_blank">Hub Ardene – Producto</a>
+          </div>
+        </div>
+
+        <div style="border-left:4px solid var(--cotton-color); background:#fff1f2; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--cotton-color); margin-bottom:6px;">Cotton On</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Consultar con el equipo por materiales
+          </div>
+        </div>
+
+        <div style="border-left:4px solid var(--lufian-color); background:#f5f3ff; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--lufian-color); margin-bottom:6px;">Lufian</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Consultar con el equipo por materiales
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box" data-role="ops">
       <div class="tip-title">Orden de lectura recomendado para la primera semana</div>
       <div class="tip-text">
         <strong>Día 1–2:</strong>Manual Operativo Tienda LCW + Retailstore Instruction Manual.<br>
@@ -2099,9 +2135,9 @@
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="ci-box"><span class="ci-check"></span></div>
         <div class="ci-content">
-          <div class="ci-text">Reunión de bienvenida con el Merchant Senior y el Brand Coordinator</div>
+          <div class="ci-text">Reunión de bienvenida con el Merchant Senior</div>
           <div class="ci-detail">Agenda 1:1 para entender expectativas, prioridades y estilo de trabajo del equipo Merchant</div>
-          <span class="ci-tag tag-rr">RRHH</span>
+          <span class="ci-tag tag-merch">MERCH</span>
         </div>
       </div>
 
@@ -2284,7 +2320,7 @@
 
     <!-- FASE 3 – MERCHANT JUNIOR -->
     <div class="checklist-phase" data-role="merchant-jr">
-      <div class="checklist-phase-title cp-3">Fase 3: Liderar y Ejecutar — Días 61 al 90</div>
+      <div class="checklist-phase-title cp-3">Fase 3: Ejecutar y Consolidar — Días 61 al 90</div>
 
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="ci-box"><span class="ci-check"></span></div>
