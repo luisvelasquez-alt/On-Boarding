@@ -423,6 +423,7 @@
   .tag-fin { background: #e8f5e9; color: #2e7d32; }
   .tag-mkt { background: #fff3e0; color: #e65100; }
   .tag-hr { background: #fce4ec; color: #880e4f; }
+  .tag-merch { background: #fff7ed; color: #c2410c; }
 
   /* ── FOOTER ── */
   .footer {
@@ -444,6 +445,7 @@
     <select id="login-user" class="login-field">
       <option value="onboarding" selected>Mabel Hall</option>
       <option value="Brand Coordinator">Luis Velasquez</option>
+      <option value="merchant-jr">Merchant Junior</option>
     </select>
 
     <label class="login-label" for="login-password">Contraseña</label>
@@ -520,26 +522,26 @@
         <div class="phase-title">Aprender y Escuchar</div>
         <div class="phase-days">Días 1 – 30</div>
         <div class="phase-desc">Conoce la empresa, las marcas, el equipo y los procesos. Observa antes de actuar.</div>
-        <div class="phase-tasks-count"><span>11</span> actividades clave</div>
+        <div class="phase-tasks-count"><span id="phase-count-1">11</span> actividades clave</div>
       </div>
       <div class="phase-card phase-2" onclick="showSection('checklist')">
         <div class="phase-label">Fase 2</div>
         <div class="phase-title">Integrarse y Proponer</div>
         <div class="phase-days">Días 31 – 60</div>
         <div class="phase-desc">Toma proyectos propios, propón mejoras y consolida relaciones con el equipo.</div>
-        <div class="phase-tasks-count"><span>11</span> actividades clave</div>
+        <div class="phase-tasks-count"><span id="phase-count-2">11</span> actividades clave</div>
       </div>
       <div class="phase-card phase-3" onclick="showSection('checklist')">
         <div class="phase-label">Fase 3</div>
         <div class="phase-title">Liderar y Ejecutar</div>
         <div class="phase-days">Días 61 – 90</div>
         <div class="phase-desc">Opera con autonomía, implementa tu plan de mejora y define objetivos propios.</div>
-        <div class="phase-tasks-count"><span>11</span> actividades clave</div>
+        <div class="phase-tasks-count"><span id="phase-count-3">11</span> actividades clave</div>
       </div>
     </div>
 
     <!-- Semana tipo -->
-    <div class="card">
+    <div class="card" data-role="ops">
       <div class="card-title">Semana – Gerente de Operaciones Retail</div>
       <div class="card-subtitle">Estructura semanal recomendada · Base Panamá · Gestión regional remota</div>
 
@@ -605,6 +607,55 @@
       <!-- Nota viajes -->
       <div style="margin-top:16px; background:#faf5ff; border-left:4px solid #7c3aed; border-radius:8px; padding:14px 16px; font-size:13px; color:#4c1d95;">
         <strong>Viajes a la región</strong>— Las tiendas fuera de Panamá (Venezuela, R. Dominicana, Guatemala, El Salvador, Curacao, Costa Rica) se gestionan de forma remota en la semana. Las visitas presenciales se programan según necesidad operativa, aperturas, auditorías especiales o requerimientos de cada marca. La frecuencia y destino se coordinan con el Brand Manager y Brand Coordinator.
+      </div>
+    </div>
+
+    <!-- Semana tipo – Merchant Junior -->
+    <div class="card" data-role="merchant-jr">
+      <div class="card-title">Semana – Merchant Junior</div>
+      <div class="card-subtitle">Estructura semanal recomendada · Base oficina · Coordinación con tiendas y marcas</div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px;">
+        <span style="font-size:12px; background:#fefce8; color:#854d0e; border-radius:20px; padding:4px 12px; font-weight:600;">Oficina / Interno</span>
+        <span style="font-size:12px; background:#f0fdf4; color:#166534; border-radius:20px; padding:4px 12px; font-weight:600;">Remoto – Tiendas y marcas</span>
+      </div>
+
+      <div class="week-grid">
+        <div class="day-card">
+          <div class="day-name">Lunes</div>
+          <div style="font-size:10px; font-weight:700; color:#854d0e; background:#fefce8; border-radius:4px; padding:2px 7px; display:inline-block; margin-bottom:8px;">Oficina</div>
+          <div class="day-task">Revisión de ventas y reportes de la semana anterior por marca</div>
+          <div class="day-task">Preparación de agenda de llamadas Gemba y pendientes de la semana</div>
+          <div class="day-task">Revisión de feedback de tiendas recibido el fin de semana</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Martes</div>
+          <div style="font-size:10px; font-weight:700; color:#166534; background:#f0fdf4; border-radius:4px; padding:2px 7px; display:inline-block; margin-bottom:8px;">Remoto</div>
+          <div class="day-task"><strong>Gemba Call LCW</strong>: seguimiento de producto con la marca</div>
+          <div class="day-task">Comunicación con tiendas: feedback de producto, tallas y precios</div>
+          <div class="day-task">Envío de minutas de la llamada Gemba</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Miércoles</div>
+          <div style="font-size:10px; font-weight:700; color:#854d0e; background:#fefce8; border-radius:4px; padding:2px 7px; display:inline-block; margin-bottom:8px;">Oficina</div>
+          <div class="day-task">Benchmarking de precios y estilos vs. competencia por mercado</div>
+          <div class="day-task">Trabajo conjunto con Planning &amp; Allocation en la división de compra por tienda</div>
+          <div class="day-task">Apoyo en revisión de precios sugeridos (markup / markdown)</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Jueves</div>
+          <div style="font-size:10px; font-weight:700; color:#854d0e; background:#fefce8; border-radius:4px; padding:2px 7px; display:inline-block; margin-bottom:8px;">Oficina</div>
+          <div class="day-task">Reunión con Mercadeo: estrategias de promociones</div>
+          <div class="day-task">Análisis de efectividad de promociones activas</div>
+          <div class="day-task">Avance de reportes solicitados por las marcas</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Viernes</div>
+          <div style="font-size:10px; font-weight:700; color:#854d0e; background:#fefce8; border-radius:4px; padding:2px 7px; display:inline-block; margin-bottom:8px;">Oficina</div>
+          <div class="day-task">Consolidación de feedback cualitativo (tiendas) y cuantitativo (reportes)</div>
+          <div class="day-task">Cierre de reportes y minutas pendientes</div>
+          <div class="day-task">Comunicación de cierre con Merchant Senior / Brand Coordinator</div>
+        </div>
       </div>
     </div>
 
@@ -1028,7 +1079,7 @@
 
     <!-- Procesos -->
     <!-- Responsabilidades reales del rol -->
-    <div class="card">
+    <div class="card" data-role="ops">
       <div class="card-title">Responsabilidades del Gerente de Operaciones – Dada Group</div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
         <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
@@ -1094,6 +1145,68 @@
           <div>
             <div style="font-weight:700; font-size:13px; color:var(--primary);">Viajes</div>
             <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Disponibilidad para viajar a tiendas en la región según las demandas de las marcas y las necesidades operativas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsabilidades – Merchant Junior -->
+    <div class="card" data-role="merchant-jr">
+      <div class="card-title">Responsabilidades del Merchant Junior – Dada Group</div>
+      <div class="card-subtitle">Basado en la matriz de responsabilidades del equipo Merchant, con alcance de nivel Junior (apoyo y ejecución bajo supervisión del Merchant Senior)</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Análisis de Producto y Tallas</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Cruzar el feedback cualitativo de tiendas con los reportes cuantitativos para identificar oportunidades por producto y talla.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Comunicación con Tiendas</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Canal directo con tiendas y Retails para recoger feedback comercial de producto, tallas y precios.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Comunicación con Marcas</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Traslado de feedback de producto a las marcas y seguimiento de sus respuestas.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Allocation</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Apoyo a Planning &amp; Allocation en la división de la compra por tienda, a nivel de departamento y familia.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:#fff7ed; border-radius:8px; align-items:flex-start; border:1px solid #fed7aa;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:#c2410c;">Precios (bajo supervisión)</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Apoyo en la revisión de precios sugeridos por las marcas y el análisis de markup/markdown. La decisión final la valida el Merchant Senior.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Benchmarking</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Comparativos de precios y estilos frente a la competencia en cada mercado.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Reportes para Marcas</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Elaboración de los reportes solicitados por las marcas, cuidando los plazos de entrega.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:#fff5f5; border-radius:8px; align-items:flex-start; border:1px solid #fcc;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--lc-color);">Llamadas Gemba LCW (específico LC Waikiki)</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Coordinación de las llamadas Gemba con la marca y las tiendas, y envío de las minutas de resumen.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Promociones</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Apoyo a Mercadeo en el desarrollo de estrategias de promociones y análisis de su efectividad.</div>
           </div>
         </div>
       </div>
@@ -1208,17 +1321,17 @@
 
           <!-- Nivel de equipos funcionales -->
           <div class="org-level" style="gap:10px; flex-wrap:wrap; justify-content:center;">
-            <div class="org-node highlight" style="min-width:120px;">
+            <div class="org-node highlight" id="org-node-ops" style="min-width:120px;">
               <div class="on-title" style="color:var(--accent);">Operaciones</div>
-              <div class="on-name">Tú – Gerente de Ops</div>
+              <div class="on-name" id="org-name-ops">Tú – Gerente de Ops</div>
             </div>
             <div class="org-node" style="min-width:120px;">
               <div class="on-title">MP&A</div>
               <div class="on-name">Planning & Allocation</div>
             </div>
-            <div class="org-node" style="min-width:120px;">
+            <div class="org-node" id="org-node-merchant" style="min-width:120px;">
               <div class="on-title">Merchant</div>
-              <div class="on-name">Producto & Precios</div>
+              <div class="on-name" id="org-name-merchant">Producto & Precios</div>
             </div>
             <div class="org-node" style="min-width:120px;">
               <div class="on-title">Visual</div>
@@ -1237,7 +1350,8 @@
       </div>
       <div style="margin-top:18px; padding:14px; background:#fff5f5; border-radius:8px; border-left:4px solid var(--accent);">
         <div style="font-size:13px; font-weight:700; color:var(--primary); margin-bottom:6px;">Tu posición en el equipo</div>
-        <div style="font-size:13px; color:var(--text); line-height:1.6;">Como Gerente de Operaciones eres el nexo entre el equipo de oficina (MP&A, Visual, Auditoría) y las tiendas. Reportas al Brand Coordinator y Brand Manager. Tu trabajo requiere coordinación constante con todos los departamentos y con los Retails/Countries.</div>
+        <div style="font-size:13px; color:var(--text); line-height:1.6;" data-role="ops">Como Gerente de Operaciones eres el nexo entre el equipo de oficina (MP&A, Visual, Auditoría) y las tiendas. Reportas al Brand Coordinator y Brand Manager. Tu trabajo requiere coordinación constante con todos los departamentos y con los Retails/Countries.</div>
+        <div style="font-size:13px; color:var(--text); line-height:1.6;" data-role="merchant-jr">Como Merchant Junior trabajas dentro del equipo Merchant, en coordinación constante con Planning &amp; Allocation, Visual y Mercadeo. Reportas al Merchant Senior y al Brand Coordinator. Tu foco es el análisis de producto, precios y el feedback comercial de tiendas.</div>
       </div>
     </div>
 
@@ -1595,7 +1709,7 @@
     </div>
 
     <!-- FASE 1 -->
-    <div class="checklist-phase">
+    <div class="checklist-phase" data-role="ops">
       <div class="checklist-phase-title cp-1">Fase 1: Aprender y Escuchar — Días 1 al 30</div>
 
       <div class="checklist-item" onclick="toggleCheck(this)">
@@ -1708,7 +1822,7 @@
     </div>
 
     <!-- FASE 2 -->
-    <div class="checklist-phase">
+    <div class="checklist-phase" data-role="ops">
       <div class="checklist-phase-title cp-2">Fase 2: Integrarse y Proponer — Días 31 al 60</div>
 
       <div class="checklist-item" onclick="toggleCheck(this)">
@@ -1812,7 +1926,7 @@
     </div>
 
     <!-- FASE 3 -->
-    <div class="checklist-phase">
+    <div class="checklist-phase" data-role="ops">
       <div class="checklist-phase-title cp-3">Fase 3: Liderar y Ejecutar — Días 61 al 90</div>
 
       <div class="checklist-item" onclick="toggleCheck(this)">
@@ -1888,6 +2002,255 @@
         </div>
       </div>
     </div>
+
+    <!-- FASE 1 – MERCHANT JUNIOR -->
+    <div class="checklist-phase" data-role="merchant-jr">
+      <div class="checklist-phase-title cp-1">Fase 1: Aprender y Escuchar — Días 1 al 30</div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Reunión de bienvenida con el Merchant Senior y el Brand Coordinator</div>
+          <div class="ci-detail">Agenda 1:1 para entender expectativas, prioridades y estilo de trabajo del equipo Merchant</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Completar proceso de inducción administrativa (contratos, nómina, beneficios)</div>
+          <div class="ci-detail">Firma de contrato, alta en sistemas de nómina, apertura de cuenta si aplica</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Solicitar y configurar todos los accesos a sistemas</div>
+          <div class="ci-detail">ICG, correo, dashboard de KPIs, carpetas compartidas de reportes por marca</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Sesiones de conocimiento con Planning &amp; Allocation, Visual, Mercadeo y Auditoría</div>
+          <div class="ci-detail">Entiende cómo se coordina el equipo Merchant con cada área transversal</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Revisar el histórico de reportes de precios y benchmarking existentes</div>
+          <div class="ci-detail">Familiarízate con el formato y la información que ya se reporta a las marcas</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Participar como oyente en al menos dos llamadas Gemba con LC Waikiki</div>
+          <div class="ci-detail">Observa la dinámica de feedback de producto entre la marca y las tiendas</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Conocer el catálogo de producto y la matriz de tallas de cada marca</div>
+          <div class="ci-detail">Base para el análisis de producto/tallas que harás en las siguientes fases</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Revisar el feedback histórico de tiendas de las últimas semanas</div>
+          <div class="ci-detail">Producto, tallas y precios: identifica los temas recurrentes por marca</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Entender el proceso de allocation junto a Planning &amp; Allocation</div>
+          <div class="ci-detail">Cómo se divide la compra por tienda a nivel de departamento y familia</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Presentar al Merchant Senior el informe de observaciones de los primeros 30 días</div>
+          <div class="ci-detail">¿Qué encontraste? ¿Qué oportunidades detectas? Preliminary findings sin compromisos aún</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 2 – MERCHANT JUNIOR -->
+    <div class="checklist-phase" data-role="merchant-jr">
+      <div class="checklist-phase-title cp-2">Fase 2: Integrarse y Proponer — Días 31 al 60</div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Participar activamente en las llamadas Gemba LCW y redactar las minutas</div>
+          <div class="ci-detail">Asume la coordinación y el envío del resumen a la marca</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Cruzar feedback cualitativo de tiendas con reportes cuantitativos por producto/talla</div>
+          <div class="ci-detail">Documenta conclusiones y compártelas con el Merchant Senior</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Apoyar la revisión de precios sugeridos por una marca (borrador, bajo supervisión)</div>
+          <div class="ci-detail">Análisis de markup/markdown vs. competitividad de mercado</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Elaborar un primer comparativo de benchmarking de precios y estilos vs. competencia</div>
+          <div class="ci-detail">Para al menos una marca y su mercado principal</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Elaborar el primer borrador de un reporte solicitado por una marca</div>
+          <div class="ci-detail">Cuidando el formato y los plazos de entrega acordados</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Apoyar el ejercicio de allocation por tienda para la siguiente temporada</div>
+          <div class="ci-detail">En coordinación directa con Planning &amp; Allocation</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Participar en el desarrollo de una estrategia de promociones con Mercadeo</div>
+          <div class="ci-detail">Define el rol de producto/precio en la promoción propuesta</div>
+          <span class="ci-tag tag-mkt">MKT</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Proponer una mejora al proceso de análisis de producto/tallas</div>
+          <div class="ci-detail">Basada en lo observado durante los primeros 60 días</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Establecer un canal de comunicación directo con al menos 3 tiendas clave</div>
+          <div class="ci-detail">Para recibir feedback comercial de forma continua</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Presentar informe de avance al día 60 con métricas y plan para fase 3</div>
+          <div class="ci-detail">¿Qué implementaste? ¿Qué impacto tuvo? ¿Qué viene en los próximos 30 días?</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 3 – MERCHANT JUNIOR -->
+    <div class="checklist-phase" data-role="merchant-jr">
+      <div class="checklist-phase-title cp-3">Fase 3: Liderar y Ejecutar — Días 61 al 90</div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Liderar de forma autónoma una llamada Gemba LCW completa, con minuta</div>
+          <div class="ci-detail">Desde la coordinación previa hasta el envío del resumen a la marca</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Presentar un análisis de benchmarking completo con recomendaciones</div>
+          <div class="ci-detail">Precios y estilos vs. competencia, con propuestas concretas por marca</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Ejecutar un ciclo completo de revisión de precios/markdown para una marca</div>
+          <div class="ci-detail">Con validación final del Merchant Senior antes de su implementación</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Medir la efectividad de una promoción ejecutada en el trimestre</div>
+          <div class="ci-detail">Compara resultado esperado vs. real y documenta aprendizajes</div>
+          <span class="ci-tag tag-mkt">MKT</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Consolidar y entregar sin supervisión un reporte solicitado por una marca</div>
+          <div class="ci-detail">Cumpliendo formato y plazo de forma autónoma</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Presentación formal de cierre de on-boarding — Día 90</div>
+          <div class="ci-detail">Comparte tus aprendizajes, logros del período, diagnóstico completo y visión para el siguiente semestre. Este es tu momento.</div>
+          <span class="ci-tag tag-merch">MERCH</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1912,11 +2275,42 @@
       nombre: 'Luis Velasquez',
       rol: 'Administrador',
       pin: 'dada2026'
+    },
+    'merchant-jr': {
+      nombre: 'Merchant Junior',
+      rol: 'Merchant Junior',
+      pin: 'Merchdada2026'
     }
   };
 
   function getSession() {
     try { return JSON.parse(localStorage.getItem(SESSION_KEY)); } catch { return null; }
+  }
+
+  // ── ROLES ──
+  function getRoleCode(rol) {
+    return (rol || '').toLowerCase().includes('merchant') ? 'merchant-jr' : 'ops';
+  }
+
+  function applyRoleContent(role) {
+    document.querySelectorAll('[data-role]').forEach(el => {
+      el.style.display = (el.dataset.role === role) ? '' : 'none';
+    });
+
+    const opsNode = document.getElementById('org-node-ops');
+    const merchNode = document.getElementById('org-node-merchant');
+    if (opsNode) opsNode.classList.toggle('highlight', role === 'ops');
+    if (merchNode) merchNode.classList.toggle('highlight', role === 'merchant-jr');
+
+    const opsName = document.getElementById('org-name-ops');
+    const merchName = document.getElementById('org-name-merchant');
+    if (opsName) opsName.textContent = role === 'ops' ? 'Tú – Gerente de Ops' : 'Operaciones';
+    if (merchName) merchName.textContent = role === 'merchant-jr' ? 'Tú – Merchant Jr.' : 'Producto & Precios';
+
+    document.querySelectorAll('.checklist-phase[data-role="' + role + '"]').forEach((phaseEl, idx) => {
+      const span = document.getElementById('phase-count-' + (idx + 1));
+      if (span) span.textContent = phaseEl.querySelectorAll('.checklist-item').length;
+    });
   }
 
   function storageKey() {
@@ -1977,6 +2371,8 @@
           remote: true
         }));
         document.getElementById('login-overlay').style.display = 'none';
+        document.getElementById('nav-user-name').textContent = data.user.nombre || data.user.rol || data.user.user_id;
+        applyRoleContent(getRoleCode(data.user.rol));
         applyProgressMap(data.progress || {});
       } else {
         const user = LOCAL_USERS[userId];
@@ -2082,8 +2478,8 @@
   }
 
   function updateProgress() {
-    const items = document.querySelectorAll('.checklist-item');
-    const checked = document.querySelectorAll('.checklist-item.checked');
+    const items = Array.from(document.querySelectorAll('.checklist-item')).filter(el => el.offsetParent !== null);
+    const checked = items.filter(el => el.classList.contains('checked'));
     const total = items.length;
     const done = checked.length;
     const pct = total >0 ? Math.round((done / total) * 100) : 0;
@@ -2107,6 +2503,7 @@
     if (!session) return;
     const label = session.nombre || session.rol || session.user_id || session.position;
     document.getElementById('nav-user-name').textContent = label;
+    applyRoleContent(getRoleCode(session.rol));
     await syncRemoteProgress();
   }
 
