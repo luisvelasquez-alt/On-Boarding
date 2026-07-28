@@ -152,14 +152,12 @@
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
   .nav {
-    display: flex; overflow-x: auto; gap: 0;
-    max-width: 1100px; margin: 0 auto;
-    scrollbar-width: none;
+    display: flex; flex-wrap: wrap; gap: 0;
+    max-width: 1600px; margin: 0 auto;
   }
-  .nav::-webkit-scrollbar { display: none; }
   .nav-btn {
     border: none; background: none; cursor: pointer;
-    padding: 16px 22px; font-size: 13px; font-weight: 600;
+    padding: 16px 16px; font-size: 13px; font-weight: 600;
     color: var(--text-light); white-space: nowrap;
     border-bottom: 3px solid transparent;
     transition: all 0.2s; letter-spacing: 0.3px;
@@ -443,8 +441,8 @@
 
     <label class="login-label" for="login-user">Usuario</label>
     <select id="login-user" class="login-field">
-      <option value="onboarding" selected>Mabel Hall</option>
-      <option value="Brand Coordinator">Luis Velasquez</option>
+      <option value="onboarding" selected>Gerente de Operaciones</option>
+      <option value="Brand Coordinator">Admin</option>
       <option value="merchant-jr">Merchant Junior</option>
     </select>
 
@@ -614,45 +612,35 @@
     <!-- Semana tipo – Merchant Junior -->
     <div class="card" data-role="merchant-jr">
       <div class="card-title">Semana – Merchant Junior</div>
-      <div class="card-subtitle">Estructura semanal recomendada · Base oficina · Coordinación con tiendas y marcas</div>
-
-      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px;">
-        <span style="font-size:12px; background:#fefce8; color:#854d0e; border-radius:20px; padding:4px 12px; font-weight:600;">Oficina / Interno</span>
-        <span style="font-size:12px; background:#f0fdf4; color:#166534; border-radius:20px; padding:4px 12px; font-weight:600;">Remoto – Tiendas y marcas</span>
-      </div>
+      <div class="card-subtitle">Estructura semanal recomendada · Coordinación con tiendas y marcas</div>
 
       <div class="week-grid">
         <div class="day-card">
           <div class="day-name">Lunes</div>
-          <div style="font-size:10px; font-weight:700; color:#854d0e; background:#fefce8; border-radius:4px; padding:2px 7px; display:inline-block; margin-bottom:8px;">Oficina</div>
           <div class="day-task">Revisión de ventas y reportes de la semana anterior por marca</div>
           <div class="day-task">Preparación de agenda de llamadas Gemba y pendientes de la semana</div>
           <div class="day-task">Revisión de feedback de tiendas recibido el fin de semana</div>
         </div>
         <div class="day-card">
           <div class="day-name">Martes</div>
-          <div style="font-size:10px; font-weight:700; color:#166534; background:#f0fdf4; border-radius:4px; padding:2px 7px; display:inline-block; margin-bottom:8px;">Remoto</div>
           <div class="day-task"><strong>Gemba Call LCW</strong>: seguimiento de producto con la marca</div>
           <div class="day-task">Comunicación con tiendas: feedback de producto, tallas y precios</div>
           <div class="day-task">Envío de minutas de la llamada Gemba</div>
         </div>
         <div class="day-card">
           <div class="day-name">Miércoles</div>
-          <div style="font-size:10px; font-weight:700; color:#854d0e; background:#fefce8; border-radius:4px; padding:2px 7px; display:inline-block; margin-bottom:8px;">Oficina</div>
           <div class="day-task">Benchmarking de precios y estilos vs. competencia por mercado</div>
           <div class="day-task">Trabajo conjunto con Planning &amp; Allocation en la división de compra por tienda</div>
           <div class="day-task">Apoyo en revisión de precios sugeridos (markup / markdown)</div>
         </div>
         <div class="day-card">
           <div class="day-name">Jueves</div>
-          <div style="font-size:10px; font-weight:700; color:#854d0e; background:#fefce8; border-radius:4px; padding:2px 7px; display:inline-block; margin-bottom:8px;">Oficina</div>
           <div class="day-task">Reunión con Mercadeo: estrategias de promociones</div>
           <div class="day-task">Análisis de efectividad de promociones activas</div>
           <div class="day-task">Avance de reportes solicitados por las marcas</div>
         </div>
         <div class="day-card">
           <div class="day-name">Viernes</div>
-          <div style="font-size:10px; font-weight:700; color:#854d0e; background:#fefce8; border-radius:4px; padding:2px 7px; display:inline-block; margin-bottom:8px;">Oficina</div>
           <div class="day-task">Consolidación de feedback cualitativo (tiendas) y cuantitativo (reportes)</div>
           <div class="day-task">Cierre de reportes y minutas pendientes</div>
           <div class="day-task">Comunicación de cierre con Merchant Senior / Brand Coordinator</div>
@@ -1154,7 +1142,7 @@
     <!-- Responsabilidades – Merchant Junior -->
     <div class="card" data-role="merchant-jr">
       <div class="card-title">Responsabilidades del Merchant Junior – Dada Group</div>
-      <div class="card-subtitle">Basado en la matriz de responsabilidades del equipo Merchant, con alcance de nivel Junior (apoyo y ejecución bajo supervisión del Merchant Senior)</div>
+      <div class="card-subtitle">Apoyo y ejecución bajo supervisión del Merchant Senior</div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
         <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
           <div>
@@ -1213,7 +1201,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-role="ops">
       <div class="card-title">Ciclo Operativo Mensual</div>
       <div class="card-subtitle">Ritmo de gestión estándar en todas las marcas</div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
@@ -1251,6 +1239,46 @@
              Revisión de incidencias de tiendas<br>
              Comunicación con gerentes de tienda<br>
              Monitoreo de stock crítico
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-role="merchant-jr">
+      <div class="card-title">Ciclo Operativo Mensual</div>
+      <div class="card-subtitle">Ritmo de gestión del equipo Merchant</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">Semana 1 del mes</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+             Cierre y análisis de ventas del mes anterior por producto/talla<br>
+             Revisión de reportes solicitados por las marcas<br>
+             Planificación de llamadas Gemba del mes
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">Semanas 2 y 3</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+             Benchmarking de precios y estilos vs. competencia<br>
+             Apoyo en allocation para la siguiente temporada<br>
+             Seguimiento de promociones activas
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">Semana 4</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+             Consolidación de feedback de tiendas del mes<br>
+             Cierre de reportes pendientes<br>
+             Reunión de resultados con el Merchant Senior<br>
+             Planificación del mes siguiente
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">Recurrente (diario)</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+             Comunicación con tiendas (feedback de producto)<br>
+             Seguimiento de reportes en curso<br>
+             Revisión de solicitudes de las marcas
           </div>
         </div>
       </div>
@@ -1361,11 +1389,19 @@
       <div class="card-title">Roles Clave con los que Interactuarás</div>
       <div class="card-subtitle">Basado en la estructura de responsabilidades de Dada Group</div>
       <div class="contacts-list" style="margin-top:12px;">
-        <div class="contact-item">
+        <div class="contact-item" data-role="ops">
           <div class="contact-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2);">BM</div>
           <div>
             <div class="contact-name">Brand Manager</div>
             <div class="contact-role">Tu reporte directo. Dirección estratégica, rentabilidad, relación con marcas y aperturas. Reunión periódica de resultados y estrategia.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+        <div class="contact-item" data-role="merchant-jr">
+          <div class="contact-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2);">BM</div>
+          <div>
+            <div class="contact-name">Brand Manager</div>
+            <div class="contact-role">Dirección estratégica del grupo. No es tu reporte directo, pero sus prioridades enmarcan las decisiones de precio y producto del equipo Merchant.</div>
             <div class="contact-brand cb-dada">Dada Group</div>
           </div>
         </div>
@@ -1385,11 +1421,19 @@
             <div class="contact-brand cb-dada">Dada Group</div>
           </div>
         </div>
-        <div class="contact-item">
+        <div class="contact-item" data-role="ops">
           <div class="contact-avatar" style="background:#e67e22;">MC</div>
           <div>
             <div class="contact-name">Merchant</div>
             <div class="contact-role">Análisis de producto/tallas, precios, benchmarking vs. competencia y feedback cualitativo comercial de tiendas. Coordina llamadas Gemba con LCW.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+        <div class="contact-item" data-role="merchant-jr">
+          <div class="contact-avatar" style="background:#e67e22;">MC</div>
+          <div>
+            <div class="contact-name">Merchant Senior</div>
+            <div class="contact-role">Tu reporte directo. Valida tus análisis de producto/tallas, tus propuestas de precios y las llamadas Gemba con LCW antes de compartirlas con las marcas.</div>
             <div class="contact-brand cb-dada">Dada Group</div>
           </div>
         </div>
@@ -1443,7 +1487,7 @@
       <p>Los sistemas y plataformas que usarás en tu gestión diaria</p>
     </div>
 
-    <div class="tools-grid">
+    <div class="tools-grid" data-role="ops">
       <div class="tool-card">        <div class="tool-name">ICG (Sistema Central)</div>
         <div class="tool-cat cat-ops">Operaciones</div>
         <div class="tool-desc">Sistema principal de inventario y ventas del grupo. Gestión de stock, traspasos entre tiendas, ajustes de inventario, activación de cajas y conciliaciones. Usado por Operaciones y Auditoría.</div>
@@ -1484,7 +1528,36 @@
       </div>
     </div>
 
-    <div class="card" style="margin-top:8px;">
+    <div class="tools-grid" data-role="merchant-jr">
+      <div class="tool-card">        <div class="tool-name">ICG (Sistema Central)</div>
+        <div class="tool-cat cat-ops">Operaciones</div>
+        <div class="tool-desc">Sistema principal de inventario y ventas del grupo. Consulta de stock y ventas por tienda como base para tus análisis de producto y precios.</div>
+      </div>
+      <div class="tool-card">        <div class="tool-name">Retail Store (LCW)</div>
+        <div class="tool-cat cat-retail">Retail – LC Waikiki</div>
+        <div class="tool-desc">Sistema específico de LC Waikiki para gestión de tiendas (RS). Referencia útil para entender el contexto de las llamadas Gemba con la marca.</div>
+      </div>
+      <div class="tool-card">        <div class="tool-name">LC Waikiki Academy</div>
+        <div class="tool-cat cat-retail">LC Waikiki</div>
+        <div class="tool-desc">Plataforma de capacitación oficial de LC Waikiki. Registro y seguimiento de cursos y certificaciones del personal de tiendas LCW.</div>
+      </div>
+      <a href="https://script.google.com/macros/s/AKfycbzV53tOJqS8Gj1PXinVU1h4cTM3afyv8kskvxJ1HFbKUBZvD2X6jGdju3gOHXVkcwGx/exec" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="tool-card" style="cursor:pointer;">        <div class="tool-name">Dashboard de KPIs</div>
+        <div class="tool-cat cat-rep">Reportes</div>
+        <div class="tool-desc">Panel de métricas de ventas, tráfico, conversión, UPT y ticket promedio por tienda y marca. Base para tu análisis de producto, precios y benchmarking.</div>
+      </div>
+      </a>
+      <div class="tool-card">        <div class="tool-name">Comunicación con Tiendas</div>
+        <div class="tool-cat cat-comm">Comunicación</div>
+        <div class="tool-desc">Canal directo con tiendas y Retails para recoger feedback comercial de producto, tallas y precios.</div>
+      </div>
+      <div class="tool-card">        <div class="tool-name">Reportes de Defectuosos</div>
+        <div class="tool-cat cat-rep">Auditoría</div>
+        <div class="tool-desc">Formatos establecidos por cada marca para reportar mercancía defectuosa recibida, relevantes para el análisis de producto.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:8px;" data-role="ops">
       <div class="card-title">Accesos que debes solicitar en tu primera semana</div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
         <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
@@ -1501,6 +1574,21 @@
         </div>
         <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
           <span></span><span><strong>Reportes y presupuestos</strong>– solicitar a Finanzas</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:8px;" data-role="merchant-jr">
+      <div class="card-title">Accesos que debes solicitar en tu primera semana</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span></span><span><strong>Dashboard de KPIs</strong>– solicitar a tu líder</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span></span><span><strong>Correo corporativo</strong>– solicitar a IT</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span></span><span><strong>Canales de comunicación</strong>– solicitar a tu líder</span>
         </div>
       </div>
     </div>
@@ -2323,7 +2411,10 @@
     return div.innerHTML;
   }
 
+  let currentRole = 'ops';
+
   function applyRoleContent(role) {
+    currentRole = role;
     document.querySelectorAll('[data-role]').forEach(el => {
       el.style.display = (el.dataset.role === role) ? '' : 'none';
     });
@@ -2510,7 +2601,7 @@
   }
 
   function updateProgress() {
-    const items = Array.from(document.querySelectorAll('.checklist-item')).filter(el => el.offsetParent !== null);
+    const items = Array.from(document.querySelectorAll('.checklist-phase[data-role="' + currentRole + '"] .checklist-item'));
     const checked = items.filter(el => el.classList.contains('checked'));
     const total = items.length;
     const done = checked.length;
