@@ -41,6 +41,23 @@ ese usuario. El fallback local (`LOCAL_USERS` en el HTML, usado solo si `GOOGLE_
 está deshabilitada) ya incluye un PIN de prueba (`Merchdada2026`) que conviene rotar o alinear
 con el PIN real que se registre en la hoja.
 
+## Nuevo rol: Comunicación y POS
+
+El dashboard también reconoce el rol de Comunicación y POS con semana tipo, responsabilidades,
+herramientas, recursos, organigrama y checklist de 90 días propios. La detección se activa cuando
+el campo `rol` contiene `POS`.
+
+Configuración esperada en la pestaña `Users`:
+
+- `user_id`: `POS`
+- `nombre`: `POS - Marketing` o el nombre de la persona
+- `rol`: debe contener `POS` (por ejemplo `POS - Marketing`)
+- `pin`: la clave entregada a la persona
+- `activo`: `TRUE`
+
+El selector de acceso y el fallback local de `index.html` ya incluyen el usuario `POS`. Si se
+cambia su PIN en Google Sheets, conviene mantener alineado el PIN local para pruebas sin API.
+
 ## Panel "Progreso del Equipo" (rol Administrador)
 
 `onboarding-progress.gs` ahora expone dos acciones nuevas: `listUsers` y `getUserProgress`,

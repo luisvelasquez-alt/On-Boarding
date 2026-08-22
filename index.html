@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>On-Boarding | Gerente de Operaciones Retail – Dada Group</title>
+<title>On-Boarding | Dada Group</title>
 <style>
   :root {
     --primary: #1a1a2e;
@@ -422,6 +422,7 @@
   .tag-mkt { background: #fff3e0; color: #e65100; }
   .tag-hr { background: #fce4ec; color: #880e4f; }
   .tag-merch { background: #fff7ed; color: #c2410c; }
+  .tag-pos { background: #ecfdf5; color: #047857; }
 
   /* ── FOOTER ── */
   .footer {
@@ -444,6 +445,7 @@
       <option value="onboarding" selected>Gerente de Operaciones</option>
       <option value="Brand Coordinator">Admin</option>
       <option value="merchant-jr">Merchant Junior</option>
+      <option value="POS">Comunicación y POS</option>
     </select>
 
     <label class="login-label" for="login-password">Contraseña</label>
@@ -480,7 +482,7 @@
     <button class="nav-btn active" onclick="showSection('plan')">Plan 90 Días</button>
     <button class="nav-btn" onclick="showSection('empresa')">Empresa y Valores</button>
     <button class="nav-btn" onclick="showSection('marcas')">Las Marcas</button>
-    <button class="nav-btn" onclick="showSection('operaciones')">Operaciones</button>
+    <button class="nav-btn" onclick="showSection('operaciones')">Gestión del Rol</button>
     <button class="nav-btn" onclick="showSection('equipo')">Equipo y Estructura</button>
     <button class="nav-btn" onclick="showSection('herramientas')">Herramientas</button>
     <button class="nav-btn" onclick="showSection('recursos')">Recursos y Dashboards</button>
@@ -534,9 +536,11 @@
         <div class="phase-label">Fase 3</div>
         <div class="phase-title" data-role="ops">Liderar y Ejecutar</div>
         <div class="phase-title" data-role="merchant-jr">Ejecutar y Consolidar</div>
+        <div class="phase-title" data-role="pos">Ejecutar y Optimizar</div>
         <div class="phase-days">Días 61 – 90</div>
         <div class="phase-desc" data-role="ops">Opera con autonomía, implementa tu plan de mejora y define objetivos propios.</div>
         <div class="phase-desc" data-role="merchant-jr">Ejecuta tus análisis con autonomía, consolida tus reportes y cierra tu on-boarding.</div>
+        <div class="phase-desc" data-role="pos">Gestiona campañas y materiales POS con autonomía, mide su impacto y consolida los controles del área.</div>
         <div class="phase-tasks-count"><span id="phase-count-3">11</span> actividades clave</div>
       </div>
     </div>
@@ -646,6 +650,47 @@
           <div class="day-task">Consolidación de feedback cualitativo (tiendas) y cuantitativo (reportes)</div>
           <div class="day-task">Cierre de reportes y minutas pendientes</div>
           <div class="day-task">Comunicación de cierre con Merchant Senior / Brand Coordinator</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semana tipo – Comunicación y POS -->
+    <div class="card" data-role="pos">
+      <div class="card-title">Semana – Coordinación de Comunicación y POS</div>
+      <div class="card-subtitle">Estructura semanal recomendada · Oficina, proveedores y puntos de venta</div>
+
+      <div class="week-grid">
+        <div class="day-card">
+          <div class="day-name">Lunes</div>
+          <div class="day-task">Revisar el calendario de campañas, lanzamientos y las grillas de contenido de la semana</div>
+          <div class="day-task">Priorizar solicitudes de artes y materiales POS por marca</div>
+          <div class="day-task">Validar inventario disponible y necesidades de distribución</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Martes</div>
+          <div class="day-task">Revisar y aprobar grillas de contenido para redes sociales</div>
+          <div class="day-task">Coordinar diseño, adaptación y traducción de piezas</div>
+          <div class="day-task">Apoyar el desarrollo de artes de mercadeo y la creación de contenido</div>
+          <div class="day-task">Verificar lineamientos de marca antes de enviar artes a aprobación</div>
+          <div class="day-task">Dar seguimiento a correcciones y versiones finales</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Miércoles</div>
+          <div class="day-task">Coordinar producción con imprentas, agencias y proveedores</div>
+          <div class="day-task">Revisar pruebas, especificaciones, calidad y fechas de entrega</div>
+          <div class="day-task">Actualizar el cronograma de producción y alertar riesgos</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Jueves</div>
+          <div class="day-task">Visitar puntos de venta y supervisar la implementación del POS</div>
+          <div class="day-task">Documentar colocación, visibilidad, uso y oportunidades de corrección</div>
+          <div class="day-task">Coordinar ajustes con Visual, Operaciones y las tiendas</div>
+        </div>
+        <div class="day-card">
+          <div class="day-name">Viernes</div>
+          <div class="day-task">Consolidar avances, entregas, incidencias y evidencias de implementación</div>
+          <div class="day-task">Actualizar inventario y distribución de materiales POS</div>
+          <div class="day-task">Reportar resultados al Gerente de Mercadeo y planificar la semana siguiente</div>
         </div>
       </div>
     </div>
@@ -1002,16 +1047,16 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════ OPERACIONES ═══════════════════════════ -->
+<!-- ═══════════════════════════ GESTIÓN DEL ROL ═══════════════════════════ -->
 <div id="operaciones" class="section">
   <div class="container">
     <div class="section-header">
-      <h2>Operaciones Retail</h2>
-      <p>Procesos clave, KPIs y estándares que debes dominar</p>
+      <h2>Gestión del Rol y Operación Retail</h2>
+      <p>Responsabilidades, ritmos, KPIs y estándares que debes dominar</p>
     </div>
 
     <!-- KPI Dashboard -->
-    <div class="kpi-dashboard">
+    <div class="kpi-dashboard" data-role="ops merchant-jr">
       <div class="kpi-card">        <div class="kpi-metric">Ventas</div>
         <div class="kpi-name">Ventas netas diarias / semanales</div>
         <div class="kpi-note">vs. Presupuesto y año anterior</div>
@@ -1039,7 +1084,7 @@
     </div>
 
     <!-- KPIs LC Waikiki -->
-    <div class="card" style="margin-bottom:24px; border-left:4px solid var(--lc-color);">
+    <div class="card" style="margin-bottom:24px; border-left:4px solid var(--lc-color);" data-role="ops merchant-jr">
       <div class="card-title">KPIs Específicos – LC Waikiki</div>
       <div class="card-subtitle">Indicadores exclusivos de la marca que debes monitorear y gestionar</div>
       <div class="kpi-dashboard" style="margin-top:16px;">
@@ -1065,6 +1110,45 @@
           <div class="kpi-name">Transferencias / Retornos</div>
           <div class="kpi-note">Movimientos de Stock entre almacenes</div>
         </div>
+      </div>
+    </div>
+
+    <!-- Indicadores – Comunicación y POS -->
+    <div class="kpi-dashboard" data-role="pos">
+      <div class="kpi-card" style="border-top:3px solid #059669;">
+        <div class="kpi-metric" style="color:#047857;">Tiempo</div>
+        <div class="kpi-name">Entregas a tiempo</div>
+        <div class="kpi-note">Artes, producción e instalación vs. cronograma</div>
+      </div>
+      <div class="kpi-card" style="border-top:3px solid #059669;">
+        <div class="kpi-metric" style="color:#047857;">Impl.</div>
+        <div class="kpi-name">Implementación correcta</div>
+        <div class="kpi-note">% de puntos de venta conformes con arte e instructivo</div>
+      </div>
+      <div class="kpi-card" style="border-top:3px solid #059669;">
+        <div class="kpi-metric" style="color:#047857;">Calidad</div>
+        <div class="kpi-name">Incidencias y retrabajos</div>
+        <div class="kpi-note">Errores de arte, producción, entrega o instalación</div>
+      </div>
+      <div class="kpi-card" style="border-top:3px solid #059669;">
+        <div class="kpi-metric" style="color:#047857;">Stock</div>
+        <div class="kpi-name">Disponibilidad POS</div>
+        <div class="kpi-note">Cobertura, faltantes y reposición por marca y tienda</div>
+      </div>
+      <div class="kpi-card" style="border-top:3px solid #059669;">
+        <div class="kpi-metric" style="color:#047857;">Prov.</div>
+        <div class="kpi-name">Cumplimiento de proveedor</div>
+        <div class="kpi-note">Calidad, cantidad y fecha de entrega acordadas</div>
+      </div>
+      <div class="kpi-card" style="border-top:3px solid #059669;">
+        <div class="kpi-metric" style="color:#047857;">Impacto</div>
+        <div class="kpi-name">Efectividad visual y funcional</div>
+        <div class="kpi-note">Visibilidad, comprensión, uso, interacción y resultado disponible</div>
+      </div>
+      <div class="kpi-card" style="border-top:3px solid #059669;">
+        <div class="kpi-metric" style="color:#047857;">RRSS</div>
+        <div class="kpi-name">Cumplimiento de grillas</div>
+        <div class="kpi-note">Revisión, aprobación y entrega de contenido según calendario</div>
       </div>
     </div>
 
@@ -1203,6 +1287,86 @@
       </div>
     </div>
 
+    <!-- Responsabilidades – Comunicación y POS -->
+    <div class="card" data-role="pos">
+      <div class="card-title">Responsabilidades de Comunicación y POS – Dada Group</div>
+      <div class="card-subtitle">Coordinación de comunicación, materiales, proveedores e implementación en puntos de venta</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Estrategia de comunicación</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Coordinar la ejecución de los planes de comunicación interna, externa y digital de la empresa.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:#ecfdf5; border-radius:8px; align-items:flex-start; border:1px solid #a7f3d0;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:#047857;">Gestión de materiales POS</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Desarrollar, implementar y dar seguimiento a materiales para puntos de venta y ecommerce.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Imagen de marca</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Velar por la aplicación correcta y consistente de los lineamientos de cada marca.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:#ecfdf5; border-radius:8px; align-items:flex-start; border:1px solid #a7f3d0;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:#047857;">Redes sociales y grillas de contenido</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Revisar y aprobar las grillas de contenido, validando mensajes, fechas, formatos y coherencia con la estrategia y los lineamientos de marca.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Contenido y artes de mercadeo</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Apoyar el desarrollo de artes para mercadeo y participar en la conceptualización, producción y creación de contenido para campañas y redes sociales.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Coordinación con Diseño</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Supervisar el desarrollo gráfico, la adaptación y la traducción de piezas de comunicación y POS.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Gestión de proveedores</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Coordinar con imprentas, agencias y proveedores la calidad, producción y entrega oportuna de los materiales.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Implementación en campo</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Supervisar la colocación, visibilidad y uso correcto de los materiales POS en tienda.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Comunicación interna</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Apoyar la difusión clara y oportuna de mensajes corporativos dentro de la organización.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Inventario y distribución POS</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Mantener seguimiento al stock, las necesidades y la distribución de materiales por marca y tienda.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Campañas y cronogramas</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Coordinar materiales para lanzamientos y promociones, asegurando tiempos de arte, producción y ejecución.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; padding:12px; background:var(--light); border-radius:8px; align-items:flex-start;">
+          <div>
+            <div style="font-weight:700; font-size:13px; color:var(--primary);">Evaluación de impacto</div>
+            <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Monitorear la efectividad visual y funcional del POS y documentar oportunidades de mejora.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card" data-role="ops">
       <div class="card-title">Ciclo Operativo Mensual</div>
       <div class="card-subtitle">Ritmo de gestión estándar en todas las marcas</div>
@@ -1281,6 +1445,47 @@
              Comunicación con tiendas (feedback de producto)<br>
              Seguimiento de reportes en curso<br>
              Revisión de solicitudes de las marcas
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-role="pos">
+      <div class="card-title">Ciclo Mensual de Comunicación y POS</div>
+      <div class="card-subtitle">Ritmo de planificación, producción, implementación y evaluación</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">Semana 1 del mes</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+             Revisar campañas, lanzamientos, mensajes y grillas de contenido del período<br>
+             Confirmar necesidades POS por marca y canal<br>
+             Validar inventario disponible y cronogramas
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">Semanas 2 y 3</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+             Revisar y aprobar grillas de contenido para redes sociales<br>
+             Coordinar diseño, adaptación y aprobación de artes<br>
+             Apoyar la creación de contenido y artes de mercadeo<br>
+             Gestionar producción, calidad y entregas con proveedores<br>
+             Distribuir materiales y supervisar su implementación
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">Semana 4</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+             Verificar implementación en puntos de venta<br>
+             Evaluar efectividad visual y funcional del POS<br>
+             Conciliar inventario y presentar resultados del mes
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:var(--primary); margin-bottom:8px;">Recurrente (diario)</div>
+          <div style="font-size:13px; color:var(--text); line-height:2;">
+             Dar seguimiento a artes, correcciones y aprobaciones<br>
+             Controlar fechas de producción, entrega e instalación<br>
+             Atender solicitudes de marcas, tiendas y áreas internas
           </div>
         </div>
       </div>
@@ -1368,9 +1573,9 @@
               <div class="on-title">Visual</div>
               <div class="on-name">Visual Merchandising</div>
             </div>
-            <div class="org-node" style="min-width:120px;">
+            <div class="org-node" id="org-node-marketing" style="min-width:120px;">
               <div class="on-title">Mercadeo</div>
-              <div class="on-name">Marketing</div>
+              <div class="on-name" id="org-name-marketing">Marketing</div>
             </div>
             <div class="org-node" style="min-width:120px;">
               <div class="on-title">Auditoría</div>
@@ -1383,6 +1588,7 @@
         <div style="font-size:13px; font-weight:700; color:var(--primary); margin-bottom:6px;">Tu posición en el equipo</div>
         <div style="font-size:13px; color:var(--text); line-height:1.6;" data-role="ops">Como Gerente de Operaciones eres el nexo entre el equipo de oficina (MP&A, Visual, Auditoría) y las tiendas. Reportas al Brand Coordinator y Brand Manager. Tu trabajo requiere coordinación constante con todos los departamentos y con los Retails/Countries.</div>
         <div style="font-size:13px; color:var(--text); line-height:1.6;" data-role="merchant-jr">Como Merchant Junior trabajas dentro del equipo Merchant, en coordinación constante con Planning &amp; Allocation, Visual y Mercadeo. Reportas al Merchant Senior y al Brand Coordinator. Tu foco es el análisis de producto, precios y el feedback comercial de tiendas.</div>
+        <div style="font-size:13px; color:var(--text); line-height:1.6;" data-role="pos">Como Coordinación de Comunicación y POS formas parte de Mercadeo/Visual y reportas al Gerente de Mercadeo. Eres el enlace entre las marcas, Diseño, Visual, Operaciones, Logística, proveedores y puntos de venta para que cada mensaje y material se implemente correctamente.</div>
       </div>
     </div>
 
@@ -1404,6 +1610,14 @@
           <div>
             <div class="contact-name">Brand Manager</div>
             <div class="contact-role">Dirección estratégica del grupo. No es tu reporte directo, pero sus prioridades enmarcan las decisiones de precio y producto del equipo Merchant.</div>
+            <div class="contact-brand cb-dada">Dada Group</div>
+          </div>
+        </div>
+        <div class="contact-item" data-role="pos">
+          <div class="contact-avatar" style="background:linear-gradient(135deg,#059669,#047857);">GM</div>
+          <div>
+            <div class="contact-name">Gerente de Mercadeo</div>
+            <div class="contact-role">Tu supervisor inmediato. Define prioridades de comunicación y campañas, valida el rumbo del área y recibe tus avances, necesidades y resultados de POS.</div>
             <div class="contact-brand cb-dada">Dada Group</div>
           </div>
         </div>
@@ -1555,6 +1769,56 @@
       </div>
     </div>
 
+    <div class="tools-grid" data-role="pos">
+      <div class="tool-card">
+        <div class="tool-name">Illustrator y Photoshop</div>
+        <div class="tool-cat cat-comm">Diseño</div>
+        <div class="tool-desc">Herramientas para revisar, adaptar y coordinar piezas de comunicación y materiales POS dentro de los lineamientos de marca.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">PowerPoint</div>
+        <div class="tool-cat cat-comm">Presentaciones</div>
+        <div class="tool-desc">Preparación de propuestas, presentaciones de campaña, reportes de implementación y comunicación interna.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Biblioteca de Artes y Brand Books</div>
+        <div class="tool-cat cat-retail">Marca</div>
+        <div class="tool-desc">Repositorio de lineamientos, artes maestros, plantillas, traducciones y versiones aprobadas por marca.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Calendario y Grillas de Contenido</div>
+        <div class="tool-cat cat-comm">Redes sociales</div>
+        <div class="tool-desc">Planificación, revisión y aprobación de publicaciones, mensajes, formatos, fechas, responsables y artes para los canales sociales de cada marca.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Cronograma de Campañas y POS</div>
+        <div class="tool-cat cat-rep">Planificación</div>
+        <div class="tool-desc">Control de briefs, responsables, aprobaciones, producción, entregas e instalación por campaña, marca y tienda.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Control de Inventario POS</div>
+        <div class="tool-cat cat-ops">Operaciones</div>
+        <div class="tool-desc">Seguimiento de existencias, necesidades, distribución, recepción y uso de materiales promocionales en los puntos de venta.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Gestión de Proveedores</div>
+        <div class="tool-cat cat-fin">Producción</div>
+        <div class="tool-desc">Registro de cotizaciones, pruebas, especificaciones, calidad, fechas de entrega e incidencias de imprentas, agencias y productores.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Canales de Tiendas y Áreas Internas</div>
+        <div class="tool-cat cat-comm">Comunicación</div>
+        <div class="tool-desc">Coordinación diaria con Mercadeo, Diseño, Visual, Operaciones, Logística y tiendas para implementar mensajes y materiales.</div>
+      </div>
+      <a href="https://script.google.com/macros/s/AKfycbzV53tOJqS8Gj1PXinVU1h4cTM3afyv8kskvxJ1HFbKUBZvD2X6jGdju3gOHXVkcwGx/exec" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="tool-card" style="cursor:pointer;">
+        <div class="tool-name">Dashboard de KPIs</div>
+        <div class="tool-cat cat-rep">Resultados</div>
+        <div class="tool-desc">Referencia para relacionar campañas e implementación POS con tráfico, conversión, ticket y ventas por marca y tienda.</div>
+      </div>
+      </a>
+    </div>
+
     <div class="card" style="margin-top:8px;" data-role="ops">
       <div class="card-title">Accesos que debes solicitar en tu primera semana</div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
@@ -1587,6 +1851,30 @@
         </div>
         <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
           <span></span><span><strong>Canales de comunicación</strong>– solicitar a tu líder</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:8px;" data-role="pos">
+      <div class="card-title">Accesos que debes solicitar en tu primera semana</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span></span><span><strong>Correo y canales corporativos</strong>– solicitar a IT y a tu líder</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span></span><span><strong>Brand books y biblioteca de artes</strong>– solicitar a Mercadeo y las marcas</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span></span><span><strong>Herramientas de diseño</strong>– solicitar licencias y configuración a IT</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span></span><span><strong>Cronogramas e inventario POS</strong>– solicitar a tu líder</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span></span><span><strong>Directorio y expedientes de proveedores</strong>– solicitar a Mercadeo</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--light); border-radius:8px; font-size:13px;">
+          <span></span><span><strong>Canales de tiendas y Logística</strong>– solicitar a Operaciones</span>
         </div>
       </div>
     </div>
@@ -1812,11 +2100,60 @@
       </div>
     </div>
 
+    <!-- Recursos disponibles – Comunicación y POS -->
+    <div class="card" data-role="pos">
+      <div class="card-title">Recursos Clave de Comunicación y POS</div>
+      <div class="card-subtitle">Materiales que debes ubicar, validar y mantener organizados durante tu primera semana</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
+        <div style="border-left:4px solid var(--lc-color); background:#eff6ff; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:var(--lc-color); margin-bottom:6px;">Lineamientos por Marca</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Brand books vigentes de LC Waikiki, Ardene, Cotton On y Lufian<br>
+            • Reglas de uso de logos, tipografías, colores e imágenes<br>
+            • Contactos de aprobación de cada marca
+          </div>
+        </div>
+        <div style="border-left:4px solid #059669; background:#ecfdf5; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:#047857; margin-bottom:6px;">Biblioteca de Artes</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Artes maestros y adaptaciones locales aprobadas<br>
+            • Plantillas de comunicación interna, externa y digital<br>
+            • Grillas de redes sociales y banco de contenido<br>
+            • Traducciones y control de versiones
+          </div>
+        </div>
+        <div style="border-left:4px solid var(--gold); background:#fffbeb; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:#92400e; margin-bottom:6px;">Producción y Proveedores</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Directorio de imprentas, agencias y productores<br>
+            • Especificaciones, pruebas y criterios de calidad<br>
+            • Historial de cotizaciones, entregas e incidencias
+          </div>
+        </div>
+        <div style="border-left:4px solid #6c63ff; background:#f5f3ff; border-radius:8px; padding:14px;">
+          <div style="font-weight:700; font-size:13px; color:#5b21b6; margin-bottom:6px;">Control e Implementación POS</div>
+          <div style="font-size:12px; color:var(--text); line-height:1.8;">
+            • Calendario de campañas y cronogramas de ejecución<br>
+            • Inventario y distribución por tienda<br>
+            • Evidencias fotográficas y reportes de implementación
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="tip-box" data-role="ops">
       <div class="tip-title">Orden de lectura recomendado para la primera semana</div>
       <div class="tip-text">
         <strong>Día 1–2:</strong>Manual Operativo Tienda LCW + Retailstore Instruction Manual.<br>
         <strong>Día 3–4:</strong>Mobile Info – Stock Tracking + Videos explicativos – Recepción de producto.
+      </div>
+    </div>
+    <div class="tip-box" data-role="pos">
+      <div class="tip-title">Orden de revisión recomendado para la primera semana</div>
+      <div class="tip-text">
+        <strong>Día 1–2:</strong>lineamientos de las cuatro marcas + calendario activo de campañas.<br>
+        <strong>Día 3–4:</strong>biblioteca de artes, plantillas, traducciones e inventario POS.<br>
+        <strong>Día 5:</strong>expedientes de proveedores + evidencias recientes de implementación en tiendas.
       </div>
     </div>
   </div>
@@ -2373,6 +2710,300 @@
         </div>
       </div>
     </div>
+
+    <!-- FASE 1 – COMUNICACIÓN Y POS -->
+    <div class="checklist-phase" data-role="pos">
+      <div class="checklist-phase-title cp-1">Fase 1: Aprender y Escuchar — Días 1 al 30</div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Reunión de bienvenida con el Gerente de Mercadeo</div>
+          <div class="ci-detail">Alinear expectativas, prioridades, campañas activas, autonomía y forma de reportar avances</div>
+          <span class="ci-tag tag-mkt">MKT</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Completar el proceso de inducción administrativa</div>
+          <div class="ci-detail">Contratos, nómina, beneficios, políticas generales, calidad y confidencialidad</div>
+          <span class="ci-tag tag-rr">RRHH</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Solicitar y configurar los accesos de Comunicación y POS</div>
+          <div class="ci-detail">Correo, canales corporativos, carpetas de marca, biblioteca de artes, herramientas de diseño y controles POS</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Revisar los lineamientos vigentes de las cuatro marcas</div>
+          <div class="ci-detail">Logos, tipografías, colores, imágenes, tono de comunicación, formatos y contactos de aprobación</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Conocer el calendario de comunicación, campañas, lanzamientos y redes sociales activo</div>
+          <div class="ci-detail">Revisar las grillas vigentes e identificar fechas críticas, dependencias, responsables, mensajes y materiales requeridos por marca y canal</div>
+          <span class="ci-tag tag-mkt">MKT</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Mapear el flujo actual de un material POS de inicio a fin</div>
+          <div class="ci-detail">Brief, diseño, traducción, aprobación, producción, distribución, instalación y evidencia de cierre</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Sesiones de conocimiento con Diseño, Visual, Operaciones, Logística y Ventas</div>
+          <div class="ci-detail">Entender qué necesita cada área, cómo se coordinan y dónde suelen aparecer retrasos o retrabajos</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Revisar el inventario y la distribución vigente de materiales POS</div>
+          <div class="ci-detail">Validar existencias, ubicación, necesidades, responsables y trazabilidad por marca y punto de venta</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Conocer a las imprentas, agencias y proveedores principales</div>
+          <div class="ci-detail">Revisar capacidades, especificaciones, pruebas, tiempos de entrega, calidad e incidencias recientes</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Realizar al menos dos visitas de observación a puntos de venta</div>
+          <div class="ci-detail">Revisar colocación, visibilidad, coherencia de marca, estado y uso funcional del POS sin intervenir todavía</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Presentar el informe de observaciones de los primeros 30 días</div>
+          <div class="ci-detail">Compartir hallazgos, riesgos, necesidades de acceso y oportunidades iniciales con el Gerente de Mercadeo</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 2 – COMUNICACIÓN Y POS -->
+    <div class="checklist-phase" data-role="pos">
+      <div class="checklist-phase-title cp-2">Fase 2: Integrarse y Proponer — Días 31 al 60</div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Coordinar una solicitud POS desde el brief hasta el arte aprobado</div>
+          <div class="ci-detail">Documentar requerimientos, responsables, versiones, observaciones y aprobación final</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Supervisar la adaptación, traducción y desarrollo de artes para una campaña</div>
+          <div class="ci-detail">Apoyar al equipo creativo y verificar la coherencia del mensaje y la aplicación correcta de los lineamientos de marca</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Revisar y aprobar una grilla de contenido para redes sociales</div>
+          <div class="ci-detail">Validar objetivos, mensajes, formatos, fechas, llamados a la acción, artes y coherencia con la campaña y la marca</div>
+          <span class="ci-tag tag-mkt">MKT</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Participar en la creación de contenido para una campaña o canal social</div>
+          <div class="ci-detail">Apoyar la conceptualización, producción o adaptación del contenido y dejar las piezas listas para aprobación y publicación</div>
+          <span class="ci-tag tag-mkt">MKT</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Gestionar cotización, prueba y cronograma con un proveedor</div>
+          <div class="ci-detail">Confirmar especificaciones, calidad, arte final y fechas antes de autorizar la producción</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Coordinar la distribución e instalación de materiales con Operaciones y Logística</div>
+          <div class="ci-detail">Definir cantidades, destinos, responsables, fechas y evidencia requerida de cada tienda</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Preparar y difundir una comunicación interna</div>
+          <div class="ci-detail">Validar claridad, audiencia, canal, aprobación y confirmación de recepción del mensaje</div>
+          <span class="ci-tag tag-mkt">MKT</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Actualizar el control de inventario y reposición POS</div>
+          <div class="ci-detail">Registrar entradas, salidas, saldos, distribución y necesidades de reposición por marca y tienda</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Supervisar la implementación de una campaña en puntos de venta</div>
+          <div class="ci-detail">Recoger evidencia, identificar desviaciones y coordinar las correcciones requeridas</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Proponer una mejora al cronograma o flujo de aprobación y producción</div>
+          <div class="ci-detail">Reducir retrasos, retrabajos o pérdida de trazabilidad sin afectar el control de marca</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Definir indicadores básicos de seguimiento para Comunicación y POS</div>
+          <div class="ci-detail">Cumplimiento de fechas, entregas completas, incidencias, correcciones, cobertura e implementación</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Presentar el informe de avance al día 60</div>
+          <div class="ci-detail">Mostrar entregables, indicadores, aprendizajes, mejoras propuestas y plan para la fase final</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 3 – COMUNICACIÓN Y POS -->
+    <div class="checklist-phase" data-role="pos">
+      <div class="checklist-phase-title cp-3">Fase 3: Ejecutar y Optimizar — Días 61 al 90</div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Ejecutar de forma autónoma un ciclo completo de materiales POS</div>
+          <div class="ci-detail">Desde el brief y la coordinación de diseño hasta la producción, distribución, instalación y cierre</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Aprobar diseños, materiales y grillas dentro de los lineamientos establecidos</div>
+          <div class="ci-detail">Dejar evidencia de la revisión, ajustes solicitados, versión aprobada y alcance de la autorización</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Gestionar a un proveedor hasta completar una entrega conforme</div>
+          <div class="ci-detail">Cumplir arte, calidad, cantidad, tiempo de producción y fecha requerida para la ejecución</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Realizar una verificación de campo en varias tiendas</div>
+          <div class="ci-detail">Comparar la implementación con el arte y el instructivo aprobados, documentando hallazgos y correcciones</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Evaluar la efectividad de una ejecución POS o contenido de redes sociales</div>
+          <div class="ci-detail">Consolidar evidencia de visibilidad, comprensión, interacción, uso y resultados disponibles para definir mejoras</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Conciliar el inventario y la distribución de materiales del período</div>
+          <div class="ci-detail">Confirmar saldos, entregas, faltantes, sobrantes y necesidades de reposición con las áreas involucradas</div>
+          <span class="ci-tag tag-ops">OPS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Estandarizar un checklist o plantilla reutilizable del área</div>
+          <div class="ci-detail">Dejar una herramienta práctica para briefing, aprobación, producción, despacho o supervisión en tienda</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="ci-box"><span class="ci-check"></span></div>
+        <div class="ci-content">
+          <div class="ci-text">Presentación formal de cierre de on-boarding — Día 90</div>
+          <div class="ci-detail">Compartir resultados, aprendizajes, riesgos, controles implementados y prioridades de Comunicación y POS para los siguientes seis meses</div>
+          <span class="ci-tag tag-pos">POS</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2422,6 +3053,11 @@
       nombre: 'Merchant Junior',
       rol: 'Merchant Junior',
       pin: 'Merchdada2026'
+    },
+    POS: {
+      nombre: 'POS - Marketing',
+      rol: 'POS - Marketing',
+      pin: 'POSdada2026.'
     }
   };
 
@@ -2431,7 +3067,10 @@
 
   // ── ROLES ──
   function getRoleCode(rol) {
-    return (rol || '').toLowerCase().includes('merchant') ? 'merchant-jr' : 'ops';
+    const normalizedRole = (rol || '').toLowerCase();
+    if (normalizedRole.includes('pos') || normalizedRole.includes('comunicación y punto de venta')) return 'pos';
+    if (normalizedRole.includes('merchant')) return 'merchant-jr';
+    return 'ops';
   }
 
   function isAdminRole(rol) {
@@ -2449,18 +3088,23 @@
   function applyRoleContent(role) {
     currentRole = role;
     document.querySelectorAll('[data-role]').forEach(el => {
-      el.style.display = (el.dataset.role === role) ? '' : 'none';
+      const allowedRoles = el.dataset.role.split(/\s+/);
+      el.style.display = allowedRoles.includes(role) ? '' : 'none';
     });
 
     const opsNode = document.getElementById('org-node-ops');
     const merchNode = document.getElementById('org-node-merchant');
+    const marketingNode = document.getElementById('org-node-marketing');
     if (opsNode) opsNode.classList.toggle('highlight', role === 'ops');
     if (merchNode) merchNode.classList.toggle('highlight', role === 'merchant-jr');
+    if (marketingNode) marketingNode.classList.toggle('highlight', role === 'pos');
 
     const opsName = document.getElementById('org-name-ops');
     const merchName = document.getElementById('org-name-merchant');
+    const marketingName = document.getElementById('org-name-marketing');
     if (opsName) opsName.textContent = role === 'ops' ? 'Tú – Gerente de Ops' : 'Operaciones';
     if (merchName) merchName.textContent = role === 'merchant-jr' ? 'Tú – Merchant Jr.' : 'Producto & Precios';
+    if (marketingName) marketingName.textContent = role === 'pos' ? 'Tú – Comunicación y POS' : 'Marketing';
 
     document.querySelectorAll('.checklist-phase[data-role="' + role + '"]').forEach((phaseEl, idx) => {
       const span = document.getElementById('phase-count-' + (idx + 1));
