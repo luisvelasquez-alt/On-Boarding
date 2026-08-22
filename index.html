@@ -442,7 +442,8 @@
 
     <label class="login-label" for="login-user">Usuario</label>
     <select id="login-user" class="login-field">
-      <option value="onboarding" selected>Gerente de Operaciones</option>
+      <option value="" selected disabled>Selecciona tu posición</option>
+      <option value="onboarding">Gerente de Operaciones</option>
       <option value="Brand Coordinator">Admin</option>
       <option value="merchant-jr">Merchant Junior</option>
       <option value="POS">Comunicación y POS</option>
@@ -3201,7 +3202,7 @@
     localStorage.removeItem(SESSION_KEY);
     document.querySelectorAll('.checklist-item').forEach(el =>el.classList.remove('checked'));
     document.getElementById('login-password').value = '';
-    document.getElementById('login-user').value = 'onboarding';
+    document.getElementById('login-user').value = '';
     document.getElementById('login-error').style.display = 'none';
     document.getElementById('login-overlay').style.display = 'flex';
   }
